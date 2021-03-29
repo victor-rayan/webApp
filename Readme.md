@@ -2,12 +2,27 @@
 - python 3.8
 - pip 20.0.2
 - Postgresql 
-- ambiente virtual
 
-# Modo de instalação
-- ativar o ambiente de acordo com o arquivo **requirements.txt**
+# Instalação e ativação do projeto
 
-- Rodar o comando dentro do repositorio:
+### 1. clone o repositório na sua máquina:
+```https://github.com/Me-Adota/website.git``` 
 
-  ```pip install -r requirements.txt```
+### 2. Ativar seu ambiente virtual:
+```virtualenv {virtual_env_name}```
+
+```source {virtual_env_name}/bin/activate```
+
+### 3. Instalar os requerimentos do projeto
+``` pip3 install -r requirements.txt```
+
+### 4. Fazer todas as migrations do projeto
+``` python3 manage.py makemigrations```
+``` python3 manage.py migrate```
+
+### 5. Rodar o servidor
+``` python manage.py runserver```
+
+A aplicação deverá estar rodando em sua máquina.
+
 
