@@ -18,6 +18,7 @@
 
 ### 4. Fazer todas as migrations do projeto
 ``` python3 manage.py makemigrations```
+
 ``` python3 manage.py migrate```
 
 ### 5. Rodar o servidor
