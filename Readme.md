@@ -1,5 +1,7 @@
 # requisitos
-- python 3
+- python 3.8
+- pip 20.0.2
+- Postgresql 
 - ambiente virtual
 
 # Modo de instalação
