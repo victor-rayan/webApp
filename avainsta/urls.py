@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #importar as urls criadas pelo app
-    path('', include('users.urls')),
-
+    # importar as urls criadas pelo app
+    path('', include('avaliations.urls')),
+    path('avaliacao/', include('avaliations.urls')),
 ]
