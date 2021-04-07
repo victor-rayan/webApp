@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 {% block title %} Criar formulario de avaliação {% endblock %}
 {% load crispy_forms_tags %}
@@ -7,8 +8,8 @@
 <div class="offset-1 col-10 list-div">
     <h1>Crie seu formulario</h1>
     <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
+         {% csrf_token %}
+         {{ form|crispy }} 
         <input type="submit" class="btn btn-success" value="Criar formulario">
     </form>
 </div>

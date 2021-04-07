@@ -12,45 +12,62 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/aebd5e97bd.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  
 </head>
 <body>
-  <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">AvaInsta</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            {%if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="#">Avaliacoes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Usuários</a>
-            </li>
-            {% else %} 
-            <li class="nav-item">
-              <a class="nav-link" href="/accounts/login">Entrar</a>
-            </li>
-            {% endif %} 
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sobre nós</a>
-            </li>
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="/accounts/logout">Sair</a>
-            </li>
-            {% endif %} 
-
-          </ul>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark" style = "background-color: #1A1F26;">
+  <div class="container" style="height : 80px;">    
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img class = "logotipo" src="{% static 'img/logo.png' %}" alt="" srcset=""></a>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Categorias<span class="sr-only">(Página atual)</span></a>
+          </li>
+          <li class="nav-item">
+            <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Avaliações<span class="sr-only">(Página atual)</span></a>
+          </li>
+          <li class="nav-item">
+            <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Recomendações<span class="sr-only">(Página atual)</span></a>
+          </li>
+         
+        </ul>
+        <form class="form-inline ml-auto">
+          <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+          <button class="btn btn-outline-success" type="submit">Ok</button>
+        </form>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link ml-auto" href="#">Registrar<span class="sr-only">(Página atual)</span></a>
+          </li>
+          <li>
+            <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Entrar<span class="sr-only">(Página atual)</span></a>
+          </li>
+          <li class="nav-item">
+            <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link mr-2" href="#">Sair<span class="sr-only">(Página atual)</span></a>
+          </li>
+        </ul> 
       </div>
     </nav>
     {% block content %}{% endblock %}
     <footer>
-      <p>AvaInsta yet to input</p>
+      <p></p>
     </footer>
     
   </div>
