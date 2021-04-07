@@ -46,16 +46,16 @@
 
         <input type="date" name="birth_date" id="inputDate" class="form-control">
 
-        
+
         {% for field in registration_form %}
         <p>
-          {% for error in field.erros %}
-          <p style="color: red"> {{ error }}</p>
+          {% for error in field.errors %}
+          <p style="color: green"> {{ error }}</p>
           {% endfor %}
         </p>
         {% endfor %}
         {% if registration_form.non_field_erros %}
-        <div style="color: red">
+        <div style="color: green">
           <p>{{ registration_form.non_field_erros}}</p>
         </div>
 

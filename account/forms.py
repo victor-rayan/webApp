@@ -12,23 +12,8 @@ class RegistrationForm(UserCreationForm):
 
   class Meta:
     model = Account
-    fields = ('email', 'username','instagram','state','birth_date', 'password1', 'password2',)
+    fields = ['email', 'username','instagram','state','birth_date', 'password1', 'password2',]
 
-  def clean_email(self):
-    email = self.cleaned_data['email'].lower()
-    try:
-      account = Account.objects.get(email=email)
-    except Exception as e:
-      return email
-    raise forms.ValidationError(f'Email {email} is already in use')
-
-  def clean_username(self):
-    username = self.cleaned_data['username']
-    try:
-      account = Account.objects.get(username=username)
-    except Exception as e:
-      return username
-    raise forms.ValidationError(f'Username {username} is already in use')
 
 class AccountAuthenticationForm(forms.ModelForm):
   password = forms.CharField(label="Password", widget=forms.PasswordInput)
