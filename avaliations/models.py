@@ -26,12 +26,14 @@ class Avaliation(models.Model):
         ('comercio_e_escritorio', 'Comercio e Escritorio'),
     )
 
-    user_instagram = models.CharField(max_length=25)
+    user_instagram = models.CharField(
+        max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
     categoria = models.CharField(max_length=25, choices=TIPO_CATEGORIA,)
-    description = models.TextField()
-    nomeProduto = models.CharField(max_length=25)
+    description = models.TextField(verbose_name='Conte sobre o produto')
+    nomeProduto = models.CharField(
+        max_length=25, verbose_name='Nome do Produto')
     entregaRapida = models.IntegerField(
-        choices=TIPO_ENTREGA,
+        choices=TIPO_ENTREGA, verbose_name='Velocidade da Entrega'
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

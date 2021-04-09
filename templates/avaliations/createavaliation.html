@@ -5,12 +5,12 @@
 {% block content %}
 
 
-<div class="offset-1 col-10 list-div">
-    <h1>Crie seu formulario</h1>
-    <form method="POST">
-         {% csrf_token %}
-         {{ form|crispy }} 
-        <input type="submit" class="btn btn-success" value="Criar formulario">
-    </form>
+<h1>Criar Formulário</h1>
+<div class="form-group"></div>
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Terminar Formulário</button>
+</form>
 </div>
 {% endblock %}
