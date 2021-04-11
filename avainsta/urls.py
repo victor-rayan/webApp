@@ -27,14 +27,16 @@ from account.views import (
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", home_view, name='home'),
+    path('', home_view, name='home'),
 
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),
     path('register/', register_view, name="register"),
-    
-    path('avaliation/', include('avaliations.urls'), name="avaliation"), 
+
+    path('avaliation/', include('avaliations.urls'), name="avaliation"),
 ]
 if settings.DEBUG:
-    urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

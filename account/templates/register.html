@@ -3,74 +3,115 @@
 
 {% block content %}
 
-<style type="text/css">
-  .card-signin{
-    width: 100%;
-    max-width: 400px;
-    padding: 15px;
-    margin: auto;
+
+<style>
+  .card {
+    border: 0px solid rgba(0, 0, 0, .125);
   }
 
-  .form-signin input[type="email"] {
-    margin-bottom: 10px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+  .form-control {
+    display: inline-flex;
   }
 
-  .form-signin input[type="text"] {
-    margin-bottom: 10px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  .form-signin input[type="password"] {
-    margin-bottom: -1px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  .btn-block {
+    display: inline-block;
+    width: 30%;
   }
 
+  .btn-dark {
+    color: #fff;
+    background-color: #1A1F26;
+    border-color: #1A1F26;
+  }
+
+  .topz {
+    font-family: lato;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+  }
 </style>
 
 
-<div class = "container-fluid">
+<div class="container">
+  <h1> </h1>
+
+  <h2 class="topz">Cadastro de usuário</h2>
   <div class="row justify-content-center">
     <div class="card card-signin">
-    <div class="card-body">
-      <div class="d-flex flex-column pb-3">
-      <form class="form-signin" method="post">{% csrf_token %}
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" required>
 
-        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+      <div class="d-flex flex-column pb-1">
+        <form class="form-signin" method="post">
 
-        <input type="password" name="password1" autocomplete="on" id="inputPassword1" class="form-control" placeholder="Password" required>
+          <div class="form-group">
+            <label for="nome">Email:</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="nome">Nome de usuário:</label>
+            <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+          </div>
+          <div class="form-group">
+            <label for="nome">Senha:</label>
+            <input type="password" name="password1" autocomplete="on" id="inputPassword1" class="form-control"
+              placeholder="Senha" required>
+          </div>
+          <div class="form-group">
+            <label for="nome">Confirmar Senha:</label>
+            <input type="password" name="password2" autocomplete="on" id="inputPassword2" class="form-control"
+              placeholder="Confirmar senha" required>
+          </div>
+          <div class="form-group">
+            <label for="nome">Instagram ID:</label>
+            <input type="text" name="instagram" id="inputInstagram" class="form-control" placeholder="Ex: @Lulu"
+              required>
+          </div>
 
-        <input type="password" name="password2"  autocomplete="on" id="inputPassword2" class="form-control" placeholder="confirm password" required>
+          <div class="form-group">
 
-        <input type="text" name="instagram"  id="inputInstagram" class="form-control" placeholder="Instagram" required>
+            <label for="nome">Unidade Federativa:</label>
+            <input type="option" name="state" id="inputState" class="form-control" placeholder="UF" required>
 
-        <input type="text" name="state" id="inputState" class="form-control" placeholder="State" required>
+          </div>
 
-        <input type="date" name="birth_date" id="inputDate" class="form-control">
+          <div class="form-group">
+            <label for="nome">Data de Nascimento:</label>
+            <input type="date" name="birth_date" id="inputDate" class="form-control">
+          </div>
 
-
-        {% for field in registration_form %}
-        <p>
-          {% for error in field.errors %}
+          {% csrf_token %}
+          {% for field in registration_form %}
+          <p>
+            {% for error in field.errors %}
           <p style="color: green"> {{ error }}</p>
           {% endfor %}
-        </p>
-        {% endfor %}
-        {% if registration_form.non_field_erros %}
-        <div style="color: green">
-          <p>{{ registration_form.non_field_erros}}</p>
-        </div>
+          </p>
+          {% endfor %}
+          {% if registration_form.non_field_erros %}
+          <div style="color: green">
+            <p>{{ registration_form.non_field_erros}}</p>
+          </div>
 
-        {% endif %}
+          {% endif %}
       </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+
+      <div class="form-group">
+        <label for="file">Adicionar foto ao perfil:</label>
+        <i class="fas fa-camera"></i>
+        <input type="file" name="file" id="file" class="form-control btn">
+        <small class="form-text text-muted">Tamanho máximo 5MB</small>
+      </div>
+
+
+
+      <span>
+        <button class="btn-sm btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Registrar</button>
+        <button class="btn-sm btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Voltar</button>
+      </span>
+
       </form>
-    </div>
+
     </div>
   </div>
-</div>
 
-{% endblock %}
+  {% endblock %}
