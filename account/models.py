@@ -1,4 +1,5 @@
 from django.db import models
+from localflavor.br.br_states import STATE_CHOICES
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -51,7 +52,7 @@ class Account(AbstractBaseUser):
   profile_image = models.ImageField(upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
   hide_email = models.BooleanField(default=True)
   instagram = models.CharField(max_length=30, unique=True)
-  state = models.CharField(verbose_name="state", max_length=60, blank=True)
+  state = models.CharField(max_length=30, choices=STATE_CHOICES)
   birth_date = models.DateField(verbose_name=_("Date of birth"), blank=True, null=True)
 
   object = MyAccountManager()
