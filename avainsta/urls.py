@@ -18,8 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from home.views import (
-    home_view
+from avaliations.views import (
+    HomeView
 )
 from account.views import (
     register_view,
@@ -28,7 +28,7 @@ from account.views import (
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", home_view, name='home'),
+    path('', HomeView.as_view(), name="home"),
 
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'localflavor',
     'account',
-    'home',
     'avaliations',
 ]
 

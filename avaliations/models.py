@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from account.models import Account
 
 # Create your models here.
 
@@ -35,6 +36,7 @@ class Avaliation(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(Account, related_name='avaliations')
 
     def __str__(self):
         return self.user_instagram
