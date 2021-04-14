@@ -40,3 +40,7 @@ class Avaliation(models.Model):
 
     def __str__(self):
         return self.user_instagram
+
+
+    def total_likes(self):
+        return self.likes.count()

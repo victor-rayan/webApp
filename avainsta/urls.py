@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from avaliations.views import (
-    HomeView
+    HomeView, likeView, AvaliationDetailView
 )
 from account.views import (
     register_view,
@@ -52,6 +52,8 @@ urlpatterns = [
 
     
     path('avaliation/', include('avaliations.urls'), name="avaliation"), 
+    path('avaliationDetail/<int:pk>', AvaliationDetailView.as_view(), name='avaliationDetail'),
+    path('like/<int:pk>', likeView, name='like_avaliation'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

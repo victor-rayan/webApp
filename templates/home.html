@@ -6,7 +6,10 @@
 
 <ul>
 {% for avaliation in object_list%}
-  <li>{{avaliation.nomeProduto}} - {{avaliation.user_instagram}}<br/></li>
+  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.nomeProduto}}</a> - {{avaliation.user_instagram}}<br/></li>
+  <br/><br/>
+  <hr>
+  <br/>
 {% endfor %}
 </ul>
 

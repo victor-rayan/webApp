@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Avaliations Detail {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1> {{avaliation.user_instagram}} </h1>
+  {{avaliation.description}}
+
+<form action="{%url 'like_avaliation' avaliation.pk%}"
+method="POST">
+  {% csrf_token %}
+  <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
+  class = "btn btn-primary btn-sm">Like</button> - {{total_likes}} likes
+</form>
+{% endblock %}
