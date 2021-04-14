@@ -20,9 +20,16 @@ class AvaliationDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(AvaliationDetailView, self).get_context_data(*args, **kwargs)
+    
         identfy = get_object_or_404(Avaliation, id=self.kwargs['pk'])
         total_likes = identfy.total_likes()
+
+        liked = False
+        if identfy.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         context["total_likes"] = total_likes
+        context["liked"] = liked
         return context
 
 def createForm(request):
@@ -40,5 +47,12 @@ def createForm(request):
 
 def likeView(request, pk):
     avaliation = get_object_or_404(Avaliation, id=request.POST.get('avaliation_id'))
-    avaliation.likes.add(request.user)
+    liked = False
+    if avaliation.likes.filter(id=request.user.id).exists():
+        avaliation.likes.remove(request.user)
+        liked = False
+    else:
+        avaliation.likes.add(request.user)
+        liked = True
+    
     return HttpResponseRedirect(reverse('avaliationDetail', args=[str(pk)]))
