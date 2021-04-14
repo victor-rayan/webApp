@@ -35,6 +35,8 @@ class Avaliation(models.Model):
     entregaRapida = models.IntegerField(
         choices=TIPO_ENTREGA, verbose_name='Velocidade da Entrega'
     )
+    notaAvaliacao = models.IntegerField(
+        choices=TIPO_ENTREGA, verbose_name='Nota de Avaliação')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
