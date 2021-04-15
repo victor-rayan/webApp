@@ -26,9 +26,12 @@ SECRET_KEY = 'g6j(i!-=(zpqd@5%2xuz%sbnl3e=f(rfblj5j(g1a00634(-2c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-AUTH_USER_MODELS = "account.Account"
+AUTH_USER_MODEL = "account.Account"
 
 # Application definition
 
@@ -40,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'localflavor',
     'account',
-    'home',
     'avaliations',
 ]
 
@@ -82,9 +85,9 @@ WSGI_APPLICATION = 'avainsta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': 'avainsta',
+        'USER': 'avainstauser',
+        'PASSWORD': 'avainsta',
         'HOST': 'localhost',
         'PORT': '5432',
     }

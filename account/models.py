@@ -1,4 +1,5 @@
 from django.db import models
+from localflavor.br.br_states import STATE_CHOICES
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -43,37 +44,33 @@ def get_default_profile_image():
 
 class Account(AbstractBaseUser):
 
-    email = models.EmailField(verbose_name='email', max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
-    date_joined = models.DateTimeField(
-        verbose_name="date joined", auto_now_add=True)
-    last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
-    is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
-    profile_image = models.ImageField(
-        upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
-    hide_email = models.BooleanField(default=True)
-    instagram = models.CharField(max_length=30, unique=True)
-    state = models.CharField(verbose_name="state",
-                             max_length=60,)
-    birth_date = models.DateField(verbose_name=_(
-        "Date of birth"), blank=True, null=True)
+  email = models.EmailField(verbose_name='email', max_length=60, unique=True)
+  username = models.CharField(max_length=30, unique=True)
+  date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
+  last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
+  is_admin = models.BooleanField(default=False)
+  is_active = models.BooleanField(default = True)
+  is_staff = models.BooleanField(default=False)
+  is_superuser = models.BooleanField(default=False)
+  profile_image = models.ImageField(upload_to=get_profile_image_filepath, null=True, blank=True, default=get_default_profile_image)
+  hide_email = models.BooleanField(default=True)
+  instagram = models.CharField(max_length=30, unique=True)
+  state = models.CharField(max_length=30, choices=STATE_CHOICES)
+  birth_date = models.DateField(verbose_name=_("Date of birth"), blank=True, null=True)
 
-    object = MyAccountManager()
+  object = MyAccountManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+  USERNAME_FIELD = 'email'
+  REQUIRED_FIELDS = ['username']
 
-    def __str__(self):
-        return self.username
+  def __str__(self):
+    return self.username
 
-    def has_perm(self, perm, obj=None):
-        return self.is_admin
+  def has_perm(self, perm, obj=None):
+    return self.is_admin
+  
+  def has_module_perms(self, app_label):
+    return True
 
-    def has_module_perms(self, app_label):
-        return True
-
-    def get_profile_image_filename(self):
-        return str(self.profile_image)[str(self.profile_image). index(f'profile_image/{self.pk}/'):]
+  def get_profile_image_filename(self):
+    return str(self.profile_image)[str(self.profile_image). index(f'profile_image/{self.pk}/'):]

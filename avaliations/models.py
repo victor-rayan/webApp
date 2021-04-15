@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from account.models import Account
 
 # Create your models here.
 
@@ -39,6 +40,11 @@ class Avaliation(models.Model):
         choices=TIPO_ENTREGA, verbose_name='Nota de Avaliação')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(Account, related_name='avaliations')
 
     def __str__(self):
         return self.user_instagram
+
+
+    def total_likes(self):
+        return self.likes.count()

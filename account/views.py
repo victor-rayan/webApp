@@ -14,7 +14,6 @@ def register_view(request, *args, **kwargs):
   if request.POST:
     form = RegistrationForm(request.POST)
     if form.is_valid():
-      print("Valid")
       form.save()
       email = form.cleaned_data.get('email').lower()
       raw_password = form.cleaned_data.get('password1')
@@ -25,7 +24,6 @@ def register_view(request, *args, **kwargs):
         return redirect(destination)
       return redirect("home")
     else:
-      print("Erros")
       context['registration_form'] = form
 
   return render(request, 'register.html', context)
