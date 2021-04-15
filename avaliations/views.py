@@ -45,6 +45,29 @@ def createForm(request):
         return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
 
 
+def updateForm(request, pk):
+    edit = Avaliation.objects.get(id=pk)
+    form = CreateForm(instance=edit)
+
+    if request.method == 'POST':
+        form = CreateForm(request.POST, instance=edit)
+        if form.is_valid():
+            form.save()
+            return (redirect('/'))
+
+    context = {'form': form}
+    return render(request, '../templates/avaliations/createavaliation.html', context)
+
+def deleteForm(request, pk):
+    delete = Avaliation.objects.get(id=pk)
+
+    if request.method == "POST":
+        delete.delete()
+        return redirect('/')
+
+    context = {'item': delete}
+    return render(request, '../templates/avaliations/deleteavaliation.html', context)
+
 def likeView(request, pk):
     avaliation = get_object_or_404(Avaliation, id=request.POST.get('avaliation_id'))
     liked = False

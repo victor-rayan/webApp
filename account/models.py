@@ -7,37 +7,40 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
 
 class MyAccountManager(BaseUserManager):
-  def create_user(self, email, username, password=None):
-    if not email:
-      raise ValueError("users must have an email address.")
-    if not username:
-      raise ValueError("Users must have a username.")
+    def create_user(self, email, username, password=None):
+        if not email:
+            raise ValueError("users must have an email address.")
+        if not username:
+            raise ValueError("Users must have a username.")
 
-    user = self.model(
-      email=self.normalize_email(email),
-      username=username,
-    )
-    user.set_password(password)
-    user.save(using=self._db)
-    return user
+        user = self.model(
+            email=self.normalize_email(email),
+            username=username,
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
 
-  def create_superuser(self, email, username, password):
-    user = self.create_user(
-      email=self.normalize_email(email),
-      username=username,
-      password=password,
-    )
-    user.is_admin=True
-    user.is_staff=True
-    user.is_superuser=True
-    user.save(using=self._db)
-    return user
+    def create_superuser(self, email, username, password):
+        user = self.create_user(
+            email=self.normalize_email(email),
+            username=username,
+            password=password,
+        )
+        user.is_admin = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
 
 def get_profile_image_filepath(self):
-  return f'profle_images/{self.pk}/{"profile_image.png"}'
+    return f'profle_images/{self.pk}/{"profile_image.png"}'
+
 
 def get_default_profile_image():
-  return "/avatars/avatar.jpg"
+    return "/avatars/avatar.jpg"
+
 
 class Account(AbstractBaseUser):
 
