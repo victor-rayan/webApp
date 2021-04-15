@@ -2,103 +2,147 @@
 {% load static %}
 
 {% block content %}
-
-<style type="text/css">
-  .card-signin{
-    width: 100%;
-    max-width: 400px;
-    padding: 15px;
-    margin: auto;
+<style>
+  .btn-block {
+    display: inline-block;
+    width: 40%;
   }
-
-  .form-signin input[type="email"] {
-    margin-bottom: 10px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+  .fdb{
+      display: flex;
+      justify-content: center;
+      height: unset;
+      align-items: center;
+      
   }
-
-  .form-signin input[type="text"] {
-    margin-bottom: 10px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+  
+  .fdb .node{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
   }
-  .form-signin input[type="password"] {
-    margin-bottom: -1px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  .plot{
+      
+      color: black;
+      height: 30px;
+      border-radius: 5px;
+      width: 11rem;
+      border-color: #ced4da;
   }
-
+  .container-fluid{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-sm {
+  
+  justify-content: center;
+  
+}
+  
+ 
 </style>
 
 
-<div class = "container-fluid">
+
+<div class="container-fluid">
+  
   <div class="row justify-content-center">
-    <div class="card card-signin">
-    <div class="card-body">
-      <div class="d-flex flex-column pb-3">
-      <form class="form-signin" method="post">{% csrf_token %}
-        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="email" required>
+   
 
-        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+      <div class="d-flex flex-column pb-1">
+        <form class="form-signin" method="post">{% csrf_token %}
+            <h2 class="row justify-content-center mb-3">Cadastro de Usuário</h2>
+          <div class="fdb form-group">
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
+          </div>
+          <div class="fdb form-group">
+            <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Nome de usuário" required>
+          </div>
+          <div class="fdb form-group">
+            <input type="password" name="password1" autocomplete="on" id="inputPassword1" class="form-control"
+              placeholder="Senha" required>
+          </div>
+          <div class="fdb form-group">
+            <input type="password" name="password2" autocomplete="on" id="inputPassword2" class="form-control"
+              placeholder="Confirmar senha" required>
+          </div>
+          <div class="fdb form-group">
+            <input type="text" name="instagram" id="inputInstagram" class="form-control" placeholder="Instagram"
+              required>
+          </div>
+          <div class="fdb form-group">
+           <div class="node">
+             <span class="mr-2">Unidade Federativa:</span>
+            <select class="plot" name="state" id="inputState" placeholder="Selecione seu Estado">
+              <option value="Default">Selecione o Estado</option>
+              <option value="AC">Acre</option>
+              <option value="AL">Alagoas</option>
+              <option value="AP">Amapá</option>
+              <option value="AM">Amazonas</option>
+              <option value="BA">Bahia</option>
+              <option value="CE">Ceará</option>
+              <option value="DF">Distrito Federal</option>
+              <option value="ES">Espírito Santo</option>
+              <option value="GO">Goiás</option>
+              <option value="MA">Maranhão</option>
+              <option value="MT">Mato Grosso</option>
+              <option value="MS">Mato Grosso do Sul</option>
+              <option value="MG">Minas Gerais</option>
+              <option value="PA">Pará</option>
+              <option value="PB">Paraíba</option>
+              <option value="PR">Paraná</option>
+              <option value="PE">Pernambuco</option>
+              <option value="PI">Piauí</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="RN">Rio Grande do Norte</option>
+              <option value="RS">Rio Grande do Sul</option>
+              <option value="RO">Rondônia</option>
+              <option value="RR">Roraima</option>
+              <option value="SC">Santa Catarina</option>
+              <option value="SP">São Paulo</option>
+              <option value="SE">Sergipe</option>
+              <option value="TO">Tocantins</option>
+            </select>
+          </div> 
+          </div>
 
-        <input type="password" name="password1" autocomplete="on" id="inputPassword1" class="form-control" placeholder="Password" required>
-
-        <input type="password" name="password2"  autocomplete="on" id="inputPassword2" class="form-control" placeholder="confirm password" required>
-
-        <input type="text" name="instagram"  id="inputInstagram" class="form-control" placeholder="Instagram" required>
-
-        <select name="state" id="inputState" placeholder="Selecione seu Estado">
-          <option value="Default">...</option>
-          <option value="AC">Acre</option>
-          <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
-          <option value="AM">Amazonas</option>
-          <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato Grosso do Sul</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
-          <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="RN">Rio Grande do Norte</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
-          <option value="RR">Roraima</option>
-          <option value="SC">Santa Catarina</option>
-          <option value="SP">São Paulo</option>
-          <option value="SE">Sergipe</option>
-          <option value="TO">Tocantins</option>
-        </select>
-
-        <input type="date" name="birth_date" id="inputDate" class="form-control">
+          <div class="fdb form-group">
+            
+              <span class="mr-2">Nascimento:</span>
+              <input type="date" name="birth_date" id="inputDate" class="form-control" >
+            
+          </div>
 
 
-        {% for field in registration_form %}
-        <p>
-          {% for error in field.errors %}
+          {% for field in registration_form %}
+          <p>
+            {% for error in field.errors %}
           <p style="color: green"> {{ error }}</p>
           {% endfor %}
-        </p>
-        {% endfor %}
-        {% if registration_form.non_field_erros %}
-        <div style="color: green">
-          <p>{{ registration_form.non_field_erros}}</p>
-        </div>
+          </p>
+          {% endfor %}
+          {% if registration_form.non_field_erros %}
+          <div style="color: green">
+            <p>{{ registration_form.non_field_erros}}</p>
+          </div>
 
-        {% endif %}
-      </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+          {% endif %}
+
+          
+
+          <span>
+            
+            <button class="btn-sm ml-4 btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Registrar</button>
+            <button class="btn-sm btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Voltar</button>
+          
+          </span>
+
+        </div>
       </form>
-    </div>
-    </div>
+
+    
   </div>
 </div>
 
