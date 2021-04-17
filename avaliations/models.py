@@ -46,7 +46,7 @@ class Avaliation(models.Model):
     likes = models.ManyToManyField(Account, related_name='avaliations')
 
     def __str__(self):
-        return self.user_instagram
+        return self.titleAvaliation
 
     def total_likes(self):
         return self.likes.count()

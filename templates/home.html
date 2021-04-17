@@ -34,12 +34,13 @@
   </div>
 </div>
 <ul>
-{% for avaliation in object_list%}
-  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.nomeProduto}}</a> - {{avaliation.user_instagram}}<br/></li>
-  <br/><br/>
+  {% for avaliation in object_list%}
+  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
+    {{avaliation.user_instagram}}<br /></li>
+  <br /><br />
   <hr>
-  <br/>
-{% endfor %}
+  <br />
+  {% endfor %}
 </ul>
 
 {% endblock %}
