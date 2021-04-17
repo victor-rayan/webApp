@@ -5,22 +5,25 @@ from django.views.generic import ListView, DetailView
 from .models import Avaliation
 from django.urls import reverse_lazy, reverse
 
+
 class HomeView(ListView):
     model = Avaliation
     template_name = 'home.html'
-    
+
    # def get_context_data(self, *args, **kwargs):
-        #identfy = get_object_or_404(Avaliation, id = self.kwargs[])
-        #context["total_likes"] = total_likes
-        #return context
+    # identfy = get_object_or_404(Avaliation, id = self.kwargs[])
+    #context["total_likes"] = total_likes
+    # return context
+
 
 class AvaliationDetailView(DetailView):
     model = Avaliation
     template_name = '../templates/avaliations/avaliation_details.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = super(AvaliationDetailView, self).get_context_data(*args, **kwargs)
-    
+        context = super(AvaliationDetailView,
+                        self).get_context_data(*args, **kwargs)
+
         identfy = get_object_or_404(Avaliation, id=self.kwargs['pk'])
         total_likes = identfy.total_likes()
 
@@ -31,6 +34,7 @@ class AvaliationDetailView(DetailView):
         context["total_likes"] = total_likes
         context["liked"] = liked
         return context
+
 
 def createForm(request):
 
@@ -58,6 +62,7 @@ def updateForm(request, pk):
     context = {'form': form}
     return render(request, '../templates/avaliations/createavaliation.html', context)
 
+
 def deleteForm(request, pk):
     delete = Avaliation.objects.get(id=pk)
 
@@ -68,8 +73,10 @@ def deleteForm(request, pk):
     context = {'item': delete}
     return render(request, '../templates/avaliations/deleteavaliation.html', context)
 
+
 def likeView(request, pk):
-    avaliation = get_object_or_404(Avaliation, id=request.POST.get('avaliation_id'))
+    avaliation = get_object_or_404(
+        Avaliation, id=request.POST.get('avaliation_id'))
     liked = False
     if avaliation.likes.filter(id=request.user.id).exists():
         avaliation.likes.remove(request.user)
@@ -77,5 +84,5 @@ def likeView(request, pk):
     else:
         avaliation.likes.add(request.user)
         liked = True
-    
+
     return HttpResponseRedirect(reverse('avaliationDetail', args=[str(pk)]))

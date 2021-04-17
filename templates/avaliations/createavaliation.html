@@ -5,43 +5,43 @@
 {% block content %}
 
 <style>
-
-.avaliation_container .btn{
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-
+    .avaliation_container .btn {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 </style>
-        <div class="user_card">
-            <div class="d-flex justify-content-center">
-                
-                <div class="d-flex justify-content-center form_container">
-                    <form method="POST" action="">
-                    <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação.</h3>
-                    {% csrf_token %}
-                    <label for="basic-url">Instagram avaliado</label>
-                    <div class="input-group mb-3">
-                        {{ form.user_instagram }}
-                    </div>
-                    <label for="basic-url">Categoria</label>
-                    <div class="dropdown show mb-2">
-                        {{ form.categoria }}
-                    </div>
-                    <label for="basic-url">Descrição</label>
-                    <div class="campo input-group mb-2">
-                        {{ form.description }}
-                    </div>
-                    <label for="basic-url">Nome do produto/serviço</label>
-                    <div class="input-group mb-2">
-                        {{ form.nomeProduto }}
-                    </div>
-                    <div class="input-group mb-2">
-                        {{ form.entregaRapida }}
-                    </div>
-                    <div class="d-flex justify-content-center mt-3 avaliation_container mb-">
-                        <input class="btn btn-dark btn-md" type="submit" value="Confirmar">
-                        <input class="btn btn-dark btn-md" type="reset" value="Voltar"">
+<div class="user_card">
+    <div class="d-flex justify-content-center">
+
+        <div class="d-flex justify-content-center form_container">
+            <form method="POST" action="">
+                <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação.</h3>
+                {% csrf_token %}
+                <label for="basic-url">Instagram avaliado</label>
+                <div class="input-group mb-3">
+                    {{ form.user_instagram }}
+                </div>
+                <label for="basic-url">Categoria</label>
+                <div class="dropdown show mb-2">
+                    {{ form.category }}
+                </div>
+                <label for="basic-url">Descrição</label>
+                <div class="campo input-group mb-2">
+                    {{ form.description }}
+                </div>
+                <label for="basic-url">Nome do produto/serviço</label>
+                <div class="input-group mb-2">
+                    {{ form.titleAvaliation }}
+                </div>
+                <div class="input-group mb-2">
+                    {{ form.deliveryTime }}
+                </div>
+                <div class="input-group mb-2">
+                    {{ form.ratingAvaliation }}
+                </div>
+                <div class="d-flex justify-content-center mt-3 avaliation_container mb-">
+                    <input class="btn btn-dark btn-md" type="submit" value="Confirmar">
+                    <input class="btn btn-dark btn-md" type="reset" value="Voltar"">
                     </div>
                 </form>
             </div>
@@ -52,10 +52,10 @@
 <script>
 
     var form_fields = document.getElementsByTagName('input')
-    form_fields[2].placeholder='@lojinha';
+    form_fields[2].placeholder = '@lojinha';
 
 
-    for (var field in form_fields){	
+    for (var field in form_fields) {
         form_fields[field].className += ' form-control'
     }
 </script>
