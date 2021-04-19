@@ -47,6 +47,12 @@
       </ul>
 
       <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" style="color: white; font-size: 16px;" href="{% url 'logout' %}">Sair</a>
+        </li>
+        
+        {% else %}
         <li class="nav-item">
           <a class="nav-link" style="color: white; font-size: 16px;" href="{% url 'register' %}">Registrar</a>
         </li>
@@ -54,18 +60,14 @@
         <li class="nav-item">
           <a class="nav-link" style="color: white; font-size: 16px;" href="{% url 'login' %}">Entrar</a>
         </li>
-        <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
-        <li class="nav-item">
-          <a class="nav-link" style="color: white; font-size: 16px;" href="#">Sair</a>
-        </li>
+        {% endif %}
       </ul>
       </div>
     </nav>
   </div>
-  <div class="row align-items-center">
-    <div class="conteudo col">
-      {% block content %}{% endblock %}
-    </div>
+  <div class="conteudo d-flex justify-content-center">
+      {% block content %}
+      {% endblock %}
   </div>
 
   <div class="row align-items-end">

@@ -31,7 +31,6 @@
   }
   .container-fluid{
     display: flex;
-    height: 100vh;
     align-items: center;
     justify-content: center;
   }
@@ -108,13 +107,10 @@
           </div> 
           </div>
 
-          <div class="fdb form-group">
-            
+          <div class="fdb form-group">  
               <span class="mr-2">Nascimento:</span>
               <input type="date" name="birth_date" id="inputDate" class="form-control" >
-            
           </div>
-
 
           {% for field in registration_form %}
           <p>
@@ -127,15 +123,12 @@
           <div style="color: green">
             <p>{{ registration_form.non_field_erros}}</p>
           </div>
-
           {% endif %}
-
-          
 
           <span>
             
             <button class="btn-sm ml-4 btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Registrar</button>
-            <button class="btn-sm btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Voltar</button>
+            <button class="btn-sm btn-dark btn-block" style="background-color: #1A1F26;" type="reset">Voltar</button>
           
           </span>
 
