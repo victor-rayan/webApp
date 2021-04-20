@@ -1,11 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from account.models import Account
-<<<<<<< HEAD
-
-=======
 from .validate import clear_user_instagram
->>>>>>> atualizandoHome
+
 # Create your models here.
 
 

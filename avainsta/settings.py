@@ -30,10 +30,7 @@ if DEBUG:
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-<<<<<<< HEAD
-=======
 AUTH_USER_MODEL = "account.Account"
->>>>>>> atualizandoHome
 
 # Application definition
 
@@ -44,14 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-=======
     'crispy_forms',
     'localflavor',
     'account',
     'avaliations',
-    'django_query_debug',
->>>>>>> atualizandoHome
 ]
 
 MIDDLEWARE = [
