@@ -5,23 +5,42 @@
 {% block content %}
 
 <div class="container">
-  <div class="row justify-content-center mb-4">
-    <div class="col-auto">
-      <h2>Destaques da semana</h2>
+  <div class="row mb-4">
+    <div class="col col-12 col-sm-12">
+      <h3 class="text-center">Destaques da semana</h3>
     </div>
   </div>
-  <div class="row justify-content-center">
-    <div class="col col-12 col-sm-8" style="padding-left: 0;">
-      <ul>
+  <div class="row">
+    <div class="col col-12 col-sm-3">
+      <div class="card">
+        <h5 class="card-header text-center estilo" style="background-color: #1A1F26; color: white;">Melhores avaliações</h5>
+        <ul class="list-group list-group-flush">
+          {% for avaliation in object_list%}
+          <li class="list-group-item"><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-6">
+      <ul class="list-group list-group-flush">
         {% for avaliation in object_list%}
         <div class="card mb-2">
-          <div class="card-body">
-            <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.nomeProduto}}</a> - {{avaliation.user_instagram}}<br/></li>
-          </div>
+            <li class="list-group-item"><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> - {{avaliation.user_instagram}}</li>
         </div>
         {% endfor %}
       </ul>
     </div>
+    <div class="col col-12 col-sm-3">
+      <div class="card">
+        <h5 class="card-header text-center" style="background-color: #1A1F26; color: white;">Piores avaliações</h5>
+        <ul class="list-group list-group-flush">
+          {% for avaliation in object_list%}
+          <li class="list-group-item"><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
+
