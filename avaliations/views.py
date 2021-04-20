@@ -4,7 +4,6 @@ from .forms import CreateForm
 from django.views.generic import ListView, DetailView
 from .models import Avaliation
 from django.urls import reverse_lazy, reverse
-from django_query_debug.mixins import FieldUsageMixin
 from django.db.models import Avg, Max, Min, Sum
 from django.contrib import messages
 

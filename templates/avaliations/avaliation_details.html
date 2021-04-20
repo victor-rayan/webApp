@@ -3,30 +3,35 @@
 {% block title %} Avaliations Detail {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
+  
 
-<h1> {{avaliation.user_instagram}} </h1>
-<h2> {{avaliation.titleAvaliation}} </h2>
-{{avaliation.description}}
+<div class="card row col-10 col-sm-8">
+  <div class="card-body">
+    <h3 class="card-title">{{avaliation.user_instagram}}</h3>
+    <p class="card-text">{{avaliation.description}}</p>
+    <form action="{%url 'like_avaliation' avaliation.pk%}" method="POST">
+      {% csrf_token %}
+    
+      <div class="form-group">
+        {% if user.is_authenticated %}
+          {% if liked %}
+            <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
+            class = "btn btn-danger btn-sm">Unlike</button>
+          {% else %}
+            <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
+            class = "btn btn-primary btn-sm">like</button>
+    
+          {% endif %}
+    
+        {% else %}
+          <small><a href="{% url 'login' %}">Login</a> to like </small>
+        {% endif %}
+        - {{total_likes}} likes
+      </div>
+    </form>
+  </div>
+</div>
 
 
-<form action="{%url 'like_avaliation' avaliation.pk%}" method="POST">
-  {% csrf_token %}
-
-  {% if user.is_authenticated %}
-  {% if liked %}
-  <button type="submit" , name="avaliation_id" , value="{{ avaliation.id }}" ,
-    class="btn btn-danger btn-sm">Unlike</button>
-  {% else %}
-  <button type="submit" , name="avaliation_id" , value="{{ avaliation.id }}" ,
-    class="btn btn-primary btn-sm">like</button>
-
-  {% endif %}
-
-  {% else %}
-
-  <small><a href="{% url 'login' %}">Login</a> to like </small>
-  {% endif %}
-  - {{total_likes}} likes
-
-</form>
+  
 {% endblock %}
