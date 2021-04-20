@@ -4,8 +4,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-
-
 <style>
     .avaliation_container .btn {
         margin-left: 10px;
@@ -67,11 +65,14 @@
 
         <div class="d-flex justify-content-center form_container">
             <form method="POST" action="">
-                <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação</h3>
+                <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação.</h3>
                 {% csrf_token %}
+                {{ form.user_instagram.errors }}
                 <label for="basic-url">Instagram avaliado</label>
+
                 <div class="input-group mb-3">
                     {{ form.user_instagram }}
+
                 </div>
                 <label for="basic-url">Categoria</label>
                 <div class="dropdown show mb-2">

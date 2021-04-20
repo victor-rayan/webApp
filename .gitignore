@@ -1,6 +1,8 @@
 # Ambiente virtual
 venv
 .env
+static/img/exemplo.png
+virtual/
 
 __pycache__/
 

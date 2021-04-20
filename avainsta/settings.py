@@ -25,8 +25,15 @@ SECRET_KEY = 'g6j(i!-=(zpqd@5%2xuz%sbnl3e=f(rfblj5j(g1a00634(-2c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
+<<<<<<< HEAD
+=======
+AUTH_USER_MODEL = "account.Account"
+>>>>>>> atualizandoHome
 
 # Application definition
 
@@ -37,6 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
+=======
+    'crispy_forms',
+    'localflavor',
+    'account',
+    'avaliations',
+    'django_query_debug',
+>>>>>>> atualizandoHome
 ]
 
 MIDDLEWARE = [

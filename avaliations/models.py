@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from account.models import Account
+<<<<<<< HEAD
 
+=======
+from .validate import clear_user_instagram
+>>>>>>> atualizandoHome
 # Create your models here.
 
 
@@ -28,7 +32,7 @@ class Avaliation(models.Model):
     )
 
     user_instagram = models.CharField(
-        max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
+        validators=[clear_user_instagram], max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
     category = models.CharField(max_length=25, choices=type_CATEGORY,)
     description = models.TextField(verbose_name='Conte sobre o produto')
     titleAvaliation = models.CharField(
@@ -39,13 +43,15 @@ class Avaliation(models.Model):
     )
 
     rating = models.IntegerField(default=1)
+    #ratingAvaliation = models.IntegerField(
+       # choices=type_RATING, verbose_name='Nota de Avaliação')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(Account, related_name='avaliations')
 
     def __str__(self):
-        return self.user_instagram
+        return self.titleAvaliation
 
     def total_likes(self):
         return self.likes.count()
