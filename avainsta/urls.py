@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from avaliations.views import (
-    HomeView, likeView, AvaliationDetailView, AddCategoryView
+    HomeView, likeView, AvaliationDetailView, AddCategoryView, CategoryView
 )
 from account.views import (
     register_view,
@@ -50,6 +50,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset/password_reset_complete.html'),
      name='password_reset_complete'),
 
+    path('category/<str:cats>/', CategoryView, name = 'category'),
     path('addCategory/', AddCategoryView.as_view(), name="addCategory"),
     path('avaliation/', include('avaliations.urls'), name="avaliation"), 
     path('avaliationDetail/<int:pk>', AvaliationDetailView.as_view(), name='avaliationDetail'),

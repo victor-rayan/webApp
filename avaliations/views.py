@@ -5,7 +5,6 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import Avaliation, Category
 from django.urls import reverse_lazy, reverse
 
-
 class HomeView(ListView):
     model = Avaliation
     template_name = 'home.html'
@@ -37,7 +36,7 @@ class AvaliationDetailView(DetailView):
 
 class AddCategoryView(CreateView):
     model = Category
-    template_name = '../templates/avaliations/add_category.html'
+    template_name = '../templates/categories/add_category.html'
     fields = '__all__'
 
 
@@ -91,3 +90,8 @@ def likeView(request, pk):
         liked = True
 
     return HttpResponseRedirect(reverse('avaliationDetail', args=[str(pk)]))
+
+
+def CategoryView(request, cats):
+    category_avaliations = Avaliation.objects.filter(category=cats)
+    return render(request, '../templates/categories/categories.html', {'cats':cats.title(), 'category_avaliations':category_avaliations})
