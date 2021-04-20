@@ -5,26 +5,27 @@
 {% block content %}
 
 <h1> {{avaliation.user_instagram}} </h1>
-  {{avaliation.description}}
+<h2> {{avaliation.titleAvaliation}} </h2>
+{{avaliation.description}}
 
-<form action="{%url 'like_avaliation' avaliation.pk%}"
-method="POST">
+
+<form action="{%url 'like_avaliation' avaliation.pk%}" method="POST">
   {% csrf_token %}
 
-{% if user.is_authenticated %}
+  {% if user.is_authenticated %}
   {% if liked %}
-    <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
-    class = "btn btn-danger btn-sm">Unlike</button>
+  <button type="submit" , name="avaliation_id" , value="{{ avaliation.id }}" ,
+    class="btn btn-danger btn-sm">Unlike</button>
   {% else %}
-    <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
-    class = "btn btn-primary btn-sm">like</button>
+  <button type="submit" , name="avaliation_id" , value="{{ avaliation.id }}" ,
+    class="btn btn-primary btn-sm">like</button>
 
   {% endif %}
 
-{% else %}
+  {% else %}
 
   <small><a href="{% url 'login' %}">Login</a> to like </small>
-{% endif %}
+  {% endif %}
   - {{total_likes}} likes
 
 </form>

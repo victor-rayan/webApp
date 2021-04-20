@@ -33,14 +33,9 @@
     </a>
   </div>
 </div>
-<ul>
-  {% for avaliation in object_list%}
-  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
-    {{avaliation.user_instagram}}<br /></li>
-  <br /><br />
-  <hr>
-  <br />
-  {% endfor %}
-</ul>
-
+<h1>Média das avaliações: {{ average }}</h1>
+{% for avaliation in avaliations%}
+<li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
+  {{avaliation.user_instagram}}</li>
+{% endfor %}
 {% endblock %}

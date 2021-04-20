@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from account.models import Account
-
+from .validate import clear_user_instagram
 # Create your models here.
 
 
@@ -28,7 +28,7 @@ class Avaliation(models.Model):
     )
 
     user_instagram = models.CharField(
-        max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
+        validators=[clear_user_instagram], max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
     category = models.CharField(max_length=25, choices=type_CATEGORY,)
     description = models.TextField(verbose_name='Conte sobre o produto')
     titleAvaliation = models.CharField(

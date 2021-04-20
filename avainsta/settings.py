@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'localflavor',
     'account',
     'avaliations',
+    'django_query_debug',
 ]
 
 MIDDLEWARE = [

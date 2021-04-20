@@ -1,22 +1,26 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import CreateForm
 from django.views.generic import ListView, DetailView
 from .models import Avaliation
 from django.urls import reverse_lazy, reverse
+from django_query_debug.mixins import FieldUsageMixin
+from django.db.models import Avg, Max, Min, Sum
+from django.contrib import messages
 
 
-class HomeView(ListView):
-    model = Avaliation
-    template_name = 'home.html'
+# class HomeView(ListView):
+#   model = Avaliation
+#  template_name = 'home.html'
 
-   # def get_context_data(self, *args, **kwargs):
-    # identfy = get_object_or_404(Avaliation, id = self.kwargs[])
-    #context["total_likes"] = total_likes
-    # return context
+# def get_context_data(self, *args, **kwargs):
+# identfy = get_object_or_404(Avaliation, id = self.kwargs[])
+# context["total_likes"] = total_likes
+# return context
 
 
 class AvaliationDetailView(DetailView):
+
     model = Avaliation
     template_name = '../templates/avaliations/avaliation_details.html'
 
@@ -43,7 +47,10 @@ def createForm(request):
 
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('home')
+        else:
+            return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
+
     else:
         form = CreateForm()
         return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
@@ -57,7 +64,9 @@ def updateForm(request, pk):
         form = CreateForm(request.POST, instance=edit)
         if form.is_valid():
             form.save()
-            return (redirect('/'))
+            return (redirect('home'))
+        else:
+            return render(request, '../templates/avaliations/createavaliation.html', context)
 
     context = {'form': form}
     return render(request, '../templates/avaliations/createavaliation.html', context)
@@ -86,3 +95,12 @@ def likeView(request, pk):
         liked = True
 
     return HttpResponseRedirect(reverse('avaliationDetail', args=[str(pk)]))
+
+
+def recommendationAvaliation(request):
+    average = Avaliation.objects.all().aggregate(Avg('ratingAvaliation'))
+
+    avaliationList = Avaliation.objects.exclude(
+        ratingAvaliation__lte=average['ratingAvaliation__avg'])[:6]
+
+    return render(request, '../templates/home.html', {'avaliations': avaliationList, 'average': average['ratingAvaliation__avg']})
