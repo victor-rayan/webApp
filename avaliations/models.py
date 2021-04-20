@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 from account.models import Account
 
@@ -10,7 +11,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolue_url(self):
+    def get_absolute_url(self):
         return reverse('home')
 
 

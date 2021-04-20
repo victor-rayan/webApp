@@ -37,7 +37,7 @@ class AvaliationDetailView(DetailView):
 
 class AddCategoryView(CreateView):
     model = Category
-    template_name = 'add.category.html'
+    template_name = '../templates/avaliations/add_category.html'
     fields = '__all__'
 
 
