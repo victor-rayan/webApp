@@ -2,7 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Avaliation, Category
+from .models import Avaliation
 
 admin.site.register(Avaliation)
-admin.site.register(Category)

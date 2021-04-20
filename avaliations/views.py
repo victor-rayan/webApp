@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import CreateForm
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Avaliation, Category
+from .models import Avaliation
 from django.urls import reverse_lazy, reverse
 
 class HomeView(ListView):
@@ -33,11 +33,6 @@ class AvaliationDetailView(DetailView):
         context["total_likes"] = total_likes
         context["liked"] = liked
         return context
-
-class AddCategoryView(CreateView):
-    model = Category
-    template_name = '../templates/categories/add_category.html'
-    fields = '__all__'
 
 
 def createForm(request):

@@ -1,12 +1,20 @@
 from django import forms
-from .models import Avaliation, Category
+from .models import Avaliation
 
-choices = Category.objects.all().values_list('name', 'name')
+choice_list = [
+    ('autos_e_pecas', 'Autos e Peças'),
+    ('para_sua_casa', 'Para a Sua Casa'),
+    ('eletronicos_e_celulares', 'Eletrônicos e celulares'),
+    ('musica_e_hobbies', 'Musicas e Hobbies'),
+    ('artigos_infatis', 'Artigos Infantis'),
+    ('moda_e_beleza', 'Moda e Beleza'),
+    ('animais_de_estimacao', 'Animais de Estimação'),
+    ('servicos', 'Serviços'),
+    ('agro_e_industrias', 'Agro e Industrias'),
+    ('esportes_e_lazer', 'Esportes e Lazer'),
+    ('comercio_e_escritorio', 'Comercio e Escritorio'),
+]
 
-choice_list = []
-
-for item in choices:
-    choice_list.append(item)
 
 class CreateForm(forms.ModelForm):
     class Meta:
