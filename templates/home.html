@@ -16,7 +16,7 @@
         <h5 class="card-header text-center estilo" style="background-color: #1A1F26; color: white;">Melhores avaliações
         </h5>
         <ul class="list-group list-group-flush">
-          {% for avaliation in object_list%}
+          {% for avaliation in avaliationsGreater %}
           <li class="list-group-item"><a
               href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></li>
           {% endfor %}
@@ -25,7 +25,7 @@
     </div>
     <div class="col col-12 col-sm-6">
       <ul class="list-group list-group-flush">
-        {% for avaliation in object_list%}
+        {% for avaliation in avaliations%}
         <div class="card mb-2">
           <li class="list-group-item"><a
               href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
@@ -38,7 +38,7 @@
       <div class="card">
         <h5 class="card-header text-center" style="background-color: #1A1F26; color: white;">Piores avaliações</h5>
         <ul class="list-group list-group-flush">
-          {% for avaliation in object_list%}
+          {% for avaliation in avaliationsWorse%}
           <li class="list-group-item"><a
               href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></li>
           {% endfor %}
@@ -47,8 +47,5 @@
     </div>
   </div>
 </div>
-{% for avaliation in avaliations%}
-<li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{ avaliation.titleAvaliation }}</a> -
-  {{avaliation.user_instagram}}</li>
-{% endfor %}
+
 {% endblock %}

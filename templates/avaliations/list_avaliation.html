@@ -2,10 +2,23 @@
 {% load static %}
 {% block title %} Busca {% endblock %}
 {% block content %}
+<div>
+    <h1>Busca por {{ search }} </h1>
+</div>
+<div>
+    {% for user_search in users_search %}
+    <div>
+        <a href="{% url 'avaliationDetail' user_search.pk %}">{{ user_search }}</a>
+        {{ user_search.user_instagram }}
+    </div>
+    <div class="review-rating pull-right">
+        <i class="fa fa-star{% if user_search.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
+        <i class="fa fa-star{% if user_search.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
+        <i class="fa fa-star{% if user_search.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
+        <i class="fa fa-star{% if user_search.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
+        <i class="fa fa-star{% if user_search.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
+    </div>
+</div>
 
-<h1>Busca por {{ search }} </h1>
-{% for user_search in users_search %}
-<a href="{% url 'avaliationDetail' user_search.pk %}">{{ user_search }}</a>
-<br />
 {% endfor %}
 {% endblock %}

@@ -3,48 +3,46 @@
 {% block title %} Avaliations Detail {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-  
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="card row col-10 col-sm-8">
   <div class="card-body">
     <h3 class="card-title">{{avaliation.user_instagram}}</h3>
     <p class="card-text">{{avaliation.description}}</p>
-    <form action="{%url 'like_avaliation' avaliation.pk%}" method="POST">
+    <form action="{% url 'like_avaliation' avaliation.pk %}" method="POST">
       {% csrf_token %}
-    
+
       <div class="form-group">
         {% if user.is_authenticated %}
-          {% if liked %}
-          {{total_likes}}
-          <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id", value="{{ avaliation.id }}" ><i class="fa fa-thumbs-up"></i></button>
-          {% else %}
-          {{total_likes}}
-              <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id", value="{{ avaliation.id }}" ><i class="fa fa-thumbs-up"></i></button>
-           
-    
-          {% endif %}
-    
+        {% if liked %}
+        {{total_likes}}
+        <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
+          value="{{ avaliation.id }}"><i class="fa fa-thumbs-up"></i></button>
         {% else %}
-          <small><a href="{% url 'login' %}">Login</a> to like </small>
-        {% endif %}
-        
-        
-        
-          <div class="rating">
-                 <i class = "fa fa-star"></i>
-                 <i class = "fa fa-star"></i>
-                 <i class = "fa fa-star"></i>
-                 <i class = "fa fa-star"></i>
-                 <i class = "fa fa-star-o empty"></i>
-          </div>
-      
+        {{total_likes}}
+        <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
+          value="{{ avaliation.id }}"><i class="fa fa-thumbs-up"></i></button>
 
+
+        {% endif %}
+
+        {% else %}
+        <small><a href="{% url 'login' %}">Login</a> to like </small>
+        {% endif %}
+
+        <div class="review-rating pull-right">
+          <i class="fa fa-star{% if avaliation.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
+          <i class="fa fa-star{% if avaliation.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
+          <i class="fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
+          <i class="fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
+          <i class="fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
+        </div>
       </div>
     </form>
   </div>
 </div>
 
 
-  
+
 {% endblock %}

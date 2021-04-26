@@ -99,10 +99,12 @@ def likeView(request, pk):
 def recommendationAvaliation(request):
     average = Avaliation.objects.all().aggregate(Avg('ratingAvaliation'))
 
-    avaliationList = Avaliation.objects.exclude(
+    avaliationListGreater = Avaliation.objects.exclude(
         ratingAvaliation__lte=average['ratingAvaliation__avg'])[:6]
+    avaliationListWorse = Avaliation.objects.exclude(
+        ratingAvaliation__gte=average['ratingAvaliation__avg'])[:6]
 
-    return render(request, '../templates/home.html', {'avaliations': avaliationList, 'average': average['ratingAvaliation__avg']})
+    return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
 
 
 def searchAvaliations(request):

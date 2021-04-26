@@ -6,13 +6,6 @@ from .validate import clear_user_instagram
 
 
 class Avaliation(models.Model):
-    type_RATING = (
-        (1, 'star1'),
-        (2, 'star2'),
-        (3, 'star3'),
-        (4, 'star4'),
-        (5, 'star5'),
-    )
     type_CATEGORY = (
         ('autos_e_pecas', 'Autos e Peças'),
         ('para_sua_casa', 'Para a Sua Casa'),
@@ -34,12 +27,8 @@ class Avaliation(models.Model):
     titleAvaliation = models.CharField(
         max_length=100, verbose_name='Titulo do Produto')
 
-    deliveryTime = models.IntegerField(
-        choices=type_RATING, verbose_name='Velocidade da Entrega'
-    )
-
     ratingAvaliation = models.IntegerField(
-       default=1)
+        default=1)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
