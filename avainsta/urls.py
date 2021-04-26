@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from avaliations.views import (
-    likeView, AvaliationDetailView, recommendationAvaliation
+    likeView, AvaliationDetailView, recommendationAvaliation, searchAvaliations
 )
 from report.views import createReportForm
 from account.views import (
@@ -55,11 +55,12 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset/password_reset_complete.html'),
          name='password_reset_complete'),
 
-
+    # Avaliação
     path('avaliation/', include('avaliations.urls'), name="avaliation"),
     path('avaliationDetail/<int:pk>',
          AvaliationDetailView.as_view(), name='avaliationDetail'),
     path('like/<int:pk>', likeView, name='like_avaliation'),
+    path('search/', searchAvaliations, name='search_avaliation')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

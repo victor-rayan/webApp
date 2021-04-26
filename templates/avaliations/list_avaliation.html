@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Busca {% endblock %}
+{% block content %}
+
+<h1>Busca por {{ search }} </h1>
+{% for user_search in users_search %}
+<a href="{% url 'avaliationDetail' user_search.pk %}">{{ user_search }}</a>
+<br />
+{% endfor %}
+{% endblock %}

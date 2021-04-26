@@ -4,7 +4,6 @@ from .forms import CreateForm
 from django.views.generic import ListView, DetailView
 from .models import Avaliation
 from django.urls import reverse_lazy, reverse
-from django_query_debug.mixins import FieldUsageMixin
 from django.db.models import Avg, Max, Min, Sum
 from django.contrib import messages
 
@@ -104,3 +103,16 @@ def recommendationAvaliation(request):
         ratingAvaliation__lte=average['ratingAvaliation__avg'])[:6]
 
     return render(request, '../templates/home.html', {'avaliations': avaliationList, 'average': average['ratingAvaliation__avg']})
+
+
+def searchAvaliations(request):
+
+    if request.method == "POST":
+
+        search = request.POST['search']
+        users_search = Avaliation.objects.filter(
+            user_instagram__contains=search)
+
+        return render(request, '../templates/avaliations/list_avaliation.html', {'search': search, 'users_search': users_search})
+    else:
+        return render(request, '../templates/avaliations/list_avaliation.html', {})
