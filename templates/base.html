@@ -13,8 +13,8 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -54,6 +54,11 @@
         </ul>
 
         <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" style="color: white; font-size: 16px;" href="{% url 'logout' %}">Sair</a>
+          </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" style="color: white; font-size: 16px;" href="{% url 'register' %}">Registrar</a>
           </li>
@@ -61,18 +66,14 @@
           <li class="nav-item">
             <a class="nav-link" style="color: white; font-size: 16px;" href="{% url 'login' %}">Entrar</a>
           </li>
-          <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
-          <li class="nav-item">
-            <a class="nav-link" style="color: white; font-size: 16px;" href="#">Sair</a>
-          </li>
+          {% endif %}
         </ul>
       </div>
     </nav>
   </div>
-  <div class="row align-items-center">
-    <div class="conteudo col">
-      {% block content %}{% endblock %}
-    </div>
+  <div class="conteudo d-flex justify-content-center">
+    {% block content %}
+    {% endblock %}
   </div>
 
   <div class="row align-items-end">
