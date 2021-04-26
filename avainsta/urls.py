@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 from avaliations.views import (
     likeView, AvaliationDetailView, recommendationAvaliation
 )
+from report.views import createReportForm
 from account.views import (
     register_view,
     login_view,
@@ -32,6 +33,9 @@ urlpatterns = [
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),
     path('register/', register_view, name="register"),
+
+    # Denuncia
+    path('report/', createReportForm, name="report"),
 
     # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'account',
     'avaliations',
     'django_query_debug',
+    'report',
 ]
 
 MIDDLEWARE = [

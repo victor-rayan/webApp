@@ -18,9 +18,3 @@ class CreateForm(forms.ModelForm):
             'deliveryTime': forms.Select(attrs={'class': 'form-control'}),
             'ratingAvaliation': forms.Select(attrs={'class': 'form-control'}),
         }
-
-        def clean_user_instagram(self):
-            validation = self.cleaned_data['user_instagram']
-            if validation != '@':
-                raise forms.ValidationError("error")
-            return validation
