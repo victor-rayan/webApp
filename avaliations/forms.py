@@ -16,7 +16,6 @@ class CreateForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'titleAvaliation': forms.TextInput(attrs={'class': 'form-control'}),
             'deliveryTime': forms.Select(attrs={'class': 'form-control'}),
-            'ratingAvaliation': forms.Select(attrs={'class': 'form-control'}),
         }
 
         def clean_user_instagram(self):

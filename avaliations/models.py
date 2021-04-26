@@ -39,7 +39,7 @@ class Avaliation(models.Model):
     )
 
     ratingAvaliation = models.IntegerField(
-        choices=type_RATING, verbose_name='Nota de Avaliação')
+       default=1)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
