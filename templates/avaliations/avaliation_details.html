@@ -62,7 +62,8 @@
         {% endif %}
 
         {% else %}
-        <small><a href="{% url 'login' %}">Login</a> to like </small>
+        {{total_likes}} 
+        <a href="{% url 'login' %}"><i class="like fa fa-heart-o ml-1" style="color: black;"></i></a>  
         {% endif %}
       </div>
         <div class="review-rating pull-left">
