@@ -4,25 +4,59 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+.star.fa{
+  color: #fff01f;
+ 
+}
+
+.fa{
+
+  font-size: 30px;
+
+}
+.like.fa:hover{
+  color:rgb(55, 0, 255);
+}
+.war{
+  display: flex;
+  color: black;
+  margin-left: auto;
+  
+}
+.card{
+  border-color: black;
+  border-width: 2px;
+}
+
+
+</style>
+
 
 <div class="card row col-10 col-sm-8">
   <div class="card-body">
-    <h3 class="card-title">{{avaliation.user_instagram}}</h3>
-    <p class="card-text">{{avaliation.description}}</p>
+    <div class="form-group">
+    <div class="row">
+      <i class="fa fa-shopping-basket"></i>
+      <h3 class="ml-2">{{avaliation.user_instagram}}</h3>
+      <a class="war" href="{% url 'report' %}"><i class="fa fa-warning" ></i> </a>
+    </div>
+    <p class="card-text" style= "text-align:justify">{{avaliation.description}}</p>
+   
     <form action="{% url 'like_avaliation' avaliation.pk %}" method="POST">
       {% csrf_token %}
 
-      <div class="form-group">
+     <div class="pull-right">
         {% if user.is_authenticated %}
         {% if liked %}
         {{total_likes}}
         <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
-          value="{{ avaliation.id }}"><i class="fa fa-thumbs-up"></i></button>
+          value="{{ avaliation.id }}"><i class="like fa fa-heart"></i></button>
         {% else %}
         {{total_likes}}
-        <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
-          value="{{ avaliation.id }}"><i class="fa fa-thumbs-up"></i></button>
+        <button style="background-color: white;border: none; font-size: larger;"  name="avaliation_id" ,
+          value="{{ avaliation.id }}"><i class="like fa fa-heart-o"></i></button>
 
 
         {% endif %}
@@ -30,13 +64,13 @@
         {% else %}
         <small><a href="{% url 'login' %}">Login</a> to like </small>
         {% endif %}
-
-        <div class="review-rating pull-right">
-          <i class="fa fa-star{% if avaliation.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
-          <i class="fa fa-star{% if avaliation.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
-          <i class="fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
-          <i class="fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
-          <i class="fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
+      </div>
+        <div class="review-rating pull-left">
+          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
+          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
+          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
+          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
+          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
         </div>
       </div>
     </form>

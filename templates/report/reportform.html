@@ -2,29 +2,44 @@
 {% load static %}
 {% block title %} Formulário de Denúncia {% endblock %}
 {% block content %}
+<style>
+.avaliation_container .btn {
+        margin-left: 10px;
+        margin-right: 10px;
 
+}
+
+.warning{
+    color: red;
+    font-size: xx-large;
+}
+</style>
 
 <div class="user_card">
     <div class="d-flex justify-content-center">
         <div class="d-flex justify-content-center form_container"></div>
-        <form method="POST" action="">
-            <h3 class="row justify-content-center mb-4" id="form-title">Denúncia de Avaliação</h3>
+        <form class="form-group sm-col-12" style="width: 90rem;" method="POST" action="">
+            
+            <h3 class="row justify-content-center mb-4" id="form-title">Denúncia <i class="ml-2 warning fa fa-warning" aria-hidden="true"></i></h3>
+            
+        
             {% csrf_token %}
-            <label for="basic-url">Titulo Denuncia:</label>
-            <div class="input-group mb-3">
+            <label for="basic-url">Título da denúncia:</label>
+            <div class="form-group mb-3">
                 {{ form.titleReport.errors }}
                 {{ form.titleReport }}
             </div>
-            <label for="basic-url">Nos conte o que aconteceu:</label>
+            <label for="basic-url">Conte nos o que aconteceu:</label>
             <div class="dropdown show mb-2">
                 {{ form.descriptionReport.errors }}
                 {{ form.descriptionReport }}
             </div>
             <div class="d-flex justify-content-center mt-3 avaliation_container mb-">
-                <input class="btn btn-dark btn-md" type="submit" value="Confirmar">
-                <input class="btn btn-dark btn-md" type="reset" value="Voltar">
+                <input class="btn btn-dark btn-md" type="submit" value="Enviar denúncia">
+                <a class="btn btn-dark btn-md" style="width:137px" role="button" href="{% url 'home' %}">Voltar</a>
             </div>
         </form>
+       
     </div>
 </div>
 </div>

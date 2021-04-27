@@ -7,3 +7,8 @@ class ReportForm(forms.ModelForm):
     class Meta:
         model = Report
         fields = ['titleReport', 'descriptionReport']
+
+        widgets = {
+            'titleReport': forms.TextInput(attrs={'class': 'form-control'}),
+            'descriptionReport': forms.Textarea(attrs={'class': 'form-control'}),
+        }
