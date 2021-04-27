@@ -1,7 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from account.models import Account
+
 
 # Create your models here.
 
@@ -14,7 +16,8 @@ class Avaliation(models.Model):
         (5, 'star5'),
     )
 
-    user_instagram = models.CharField(
+    author = models.ForeignKey(Account , on_delete=models.CASCADE)
+    store_instagram = models.CharField(
         max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
     category = models.CharField(max_length=25, default='...')
     description = models.TextField(verbose_name='Conte sobre o produto')

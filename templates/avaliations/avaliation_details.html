@@ -4,7 +4,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1> {{avaliation.user_instagram}} - {{avaliation.user_instagram.id}} </h1>
+<h1> {{avaliation.store_instagram}} - 
+  {{user.id}} - {{avaliation.author.id}}</h1>
+
   {{avaliation.description}}
 
 <form action="{%url 'like_avaliation' avaliation.pk%}"

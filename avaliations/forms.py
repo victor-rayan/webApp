@@ -19,10 +19,10 @@ choice_list = [
 class CreateForm(forms.ModelForm):
     class Meta:
         model = Avaliation
-        fields = ['user_instagram', 'category', 'description',
+        fields = ['store_instagram', 'category', 'description',
                   'titleAvaliation', 'deliveryTime', 'ratingAvaliation']
         widgets = {
-            'user_instagram': forms.TextInput(attrs={'class': 'form-control'}),
+            'store_instagram': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'titleAvaliation': forms.TextInput(attrs={'class': 'form-control'}),
