@@ -16,7 +16,7 @@ class Avaliation(models.Model):
         (5, 'star5'),
     )
 
-    author = models.ForeignKey(Account , on_delete=models.CASCADE)
+    author = models.ForeignKey(Account , on_delete=models.CASCADE, default=None, null=True)
     store_instagram = models.CharField(
         max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
     category = models.CharField(max_length=25, default='...')

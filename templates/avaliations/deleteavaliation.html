@@ -4,14 +4,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<p>Quer mesmo deletar a avaliação feita ao usuário {{item}}?</p>
+    <p>Quer mesmo deletar a avaliação feita ao usuário {{item}}?</p>
 
-<form action="{% url 'delete-form' item.id %}" method="POST">
-    {% csrf_token %}
-    <div>
-        <button type="submit">Excluir</button>
-        <a href="{% url 'home' %}">Não, esquece!</a>
-    </div>
-</form>
+    <form action="{% url 'delete-form' item.id %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <button type="submit">Excluir</button>
+            <a href="{% url 'home' %}">Não, esquece!</a>
+        </div>
+    </form>
 
 {% endblock %}

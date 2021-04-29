@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import CreateForm
+from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Avaliation, Account
 from django.urls import reverse_lazy, reverse
@@ -30,10 +32,12 @@ class AvaliationDetailView(DetailView):
 
 
 def createForm(request):
-    author = Account.object.get(pk=request.user.id)
-    print(author)
-    print(request.user.id)
+    try:
+        author = Account.object.get(pk=request.user.id)
+    except:
+        return redirect('/')
     author.save()
+
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
@@ -87,3 +91,10 @@ def likeView(request, pk):
 def CategoryView(request, cats):
     category_avaliations = Avaliation.objects.filter(category=cats)
     return render(request, '../templates/categories/categories.html', {'cats':cats.title(), 'category_avaliations':category_avaliations})
+
+def userAvaliations(request):
+    avaliations = Avaliation.objects.all()
+    avaliations = avaliations.filter(author_id=request.user.id)
+    for avaliation in avaliations:
+        print(avaliation.titleAvaliation)
+    return render(request, 'profile/profile.html', {"avaliations": avaliations})

@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.createForm),
     path('update/<str:pk>/', views.updateForm, name="update-form"),
     path('delete/<str:pk>/', views.deleteForm, name="delete-form"),
+    path('profile/', views.userAvaliations, name="profile"),
 ]

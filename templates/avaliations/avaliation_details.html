@@ -4,8 +4,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<h1> {{avaliation.store_instagram}} - 
-  {{user.id}} - {{avaliation.author.id}}</h1>
+current user: {{user.id}} 
+post auther:{{avaliation.author.id}}
+
+<h1> {{avaliation.store_instagram}} - </h1>
 
   {{avaliation.description}}
 
@@ -14,6 +16,11 @@ method="POST">
   {% csrf_token %}
 
 {% if user.is_authenticated %}
+    {% if user.id == avaliation.author.id %}
+      <a href="{% url 'update-form' avaliation.pk %}"> Edit </a>  
+      <a href="{% url 'delete-form' avaliation.pk %}"> delete </a>
+    {% endif %}
+  <br>
   {% if liked %}
     <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
     class = "btn btn-danger btn-sm">Unlike</button>
