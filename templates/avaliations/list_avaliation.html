@@ -2,23 +2,106 @@
 {% load static %}
 {% block title %} Busca {% endblock %}
 {% block content %}
-<div>
-    <h1>Busca por {{ search }} </h1>
-</div>
-<div>
-    {% for user_search in users_search %}
-    <div>
-        <a href="{% url 'avaliationDetail' user_search.pk %}">{{ user_search }}</a>
-        {{ user_search.user_instagram }}
-    </div>
-    <div class="review-rating pull-right">
-        <i class="fa fa-star{% if user_search.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
-        <i class="fa fa-star{% if user_search.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
-        <i class="fa fa-star{% if user_search.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
-        <i class="fa fa-star{% if user_search.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
-        <i class="fa fa-star{% if user_search.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
-    </div>
-</div>
 
-{% endfor %}
+
+<style>
+
+    .star.fa{
+      color: #fbbe2e;
+     
+    }
+    
+    .fa{
+    
+      font-size: 30px;
+    
+    }
+    .like.fa:hover{
+      color:rgb(55, 0, 255);
+    }
+    .war{
+      display: flex;
+      color: black;
+      margin-left: auto;
+      
+    }
+    .card{
+      border-color: black;
+      border-width: 2px;
+    }
+    
+    
+    </style>
+
+    
+    <ul class="list-group col-10 col-sm-8 justify-content-md-center">
+
+        <div class="row justify-content-md-center">
+            <h2>Buscas para {{ search }} </h2>
+        </div>
+
+    {% for user_search in users_search %}
+    <li class="list-group-item text-center"style="border:none;">
+    
+    <div class="card">
+        
+      
+      <div class="card-body">
+        <div class="form-group">
+        <div class="row">
+          <i class="fa fa-shopping-basket"></i>
+          <h3 class="ml-2">{{user_search.user_instagram}}</h3>
+          <a class="war" href="{% url 'report' %}"><i class="fa fa-warning"></i></a>
+        </div>
+        <p class="card-text" style= "text-align:justify">{{user_search.description}}</p>
+       
+        <form action="{% url 'like_avaliation' user_search.pk %}" method="POST">
+          {% csrf_token %}
+    
+         <div class="pull-right">
+            <!--
+            {% if user.is_authenticated %}
+            {% if liked %}
+            {{total_likes}}
+            <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
+              value="{{ avaliation.id }}"><i class="like fa fa-heart"></i></button>
+            {% else %}
+            {{total_likes}}
+            <button style="background-color: white;border: none; font-size: larger;"  name="avaliation_id" ,
+              value="{{ avaliation.id }}"><i class="like fa fa-heart-o"></i></button>
+    
+    
+            {% endif %}
+    
+            {% else %}
+            {{total_likes}} 
+            <a href="{% url 'login' %}"><i class="like fa fa-heart-o ml-1" style="color: black;"></i></a>  
+            {% endif %}
+            --> 
+          </div>
+            <div class="review-rating pull-left">
+              <i class="star fa fa-star{% if user_search.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
+              <i class="star fa fa-star{% if user_search.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
+              <i class="star fa fa-star{% if user_search.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
+              <i class="star fa fa-star{% if user_search.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
+              <i class="star fa fa-star{% if user_search.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
+            </div>
+          </div>
+        </form>
+        
+      </div>
+      
+    </div>
+</li>
+    {% endfor %}
+</ul>
+    
+     
+    
+    
+
+
+
+
+   
 {% endblock %}

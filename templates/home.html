@@ -18,20 +18,22 @@
         <ul class="list-group list-group-flush">
           {% for avaliation in avaliationsGreater %}
           <li class="list-group-item"><a
-              href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></li>
+              href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.user_instagram}}</a></li>
           {% endfor %}
         </ul>
       </div>
     </div>
     <div class="col col-12 col-sm-6">
       <ul class="list-group list-group-flush">
-        {% for avaliation in avaliations%}
+       
+        <!-- {% for avaliation in avaliations%}
         <div class="card mb-2">
           <li class="list-group-item"><a
               href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
             {{avaliation.user_instagram}}</li>
         </div>
         {% endfor %}
+        -->
       </ul>
     </div>
     <div class="col col-12 col-sm-3">
@@ -40,7 +42,7 @@
         <ul class="list-group list-group-flush">
           {% for avaliation in avaliationsWorse%}
           <li class="list-group-item"><a
-              href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></li>
+              href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.user_instagram}}</a></li>
           {% endfor %}
         </ul>
       </div>

@@ -7,7 +7,7 @@
 <style>
 
 .star.fa{
-  color: #fff01f;
+  color: #fbbe2e;
  
 }
 
@@ -40,7 +40,7 @@
     <div class="row">
       <i class="fa fa-shopping-basket"></i>
       <h3 class="ml-2">{{avaliation.user_instagram}}</h3>
-      <a class="war" href="{% url 'report' %}"><i class="fa fa-warning" ></i> </a>
+      <a class="war" href="{% url 'report' %}"><i class="fa fa-warning"></i></a>
     </div>
     <p class="card-text" style= "text-align:justify">{{avaliation.description}}</p>
    
@@ -72,9 +72,14 @@
           <i class="star fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
           <i class="star fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
           <i class="star fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
-        </div>
+        
+        </form>
+        
+        
+
       </div>
-    </form>
+      </div>
+    
   </div>
 </div>
 
