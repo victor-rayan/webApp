@@ -15,6 +15,14 @@ choice_list = [
     ('comercio_e_escritorio', 'Comercio e Escritorio'),
 ]
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 300,
+    },
+}
+
 
 class CreateForm(forms.ModelForm):
     class Meta:

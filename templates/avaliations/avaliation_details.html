@@ -9,7 +9,7 @@ post auther:{{avaliation.author.id}}
 
 <h1> {{avaliation.store_instagram}} - </h1>
 
-  {{avaliation.description}}
+  {{avaliation.description|safe}}
 
 <form action="{%url 'like_avaliation' avaliation.pk%}"
 method="POST">
