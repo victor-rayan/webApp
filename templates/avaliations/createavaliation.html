@@ -83,7 +83,7 @@
 
                 <label for="basic-url">Instagram avaliado</label>
                 <div class="input-group mb-3">
-                    {{ form.user_instagram }}
+                    {{ form.store_instagram }}
 
                 </div>
                 <label for="basic-url">Categoria</label>
@@ -92,6 +92,8 @@
                 </div>
                 <label for="basic-url">Descrição</label>
                 <div class="campo input-group mb-2">
+                    <script type="text/javascript" src="{% static " ckeditor/ckeditor-init.js" %}"></script>
+                    <script type="text/javascript" src="{% static " ckeditor/ckeditor/ckeditor.js" %}"></script>
                     {{ form.description }}
                 </div>
                 <div class="form-group">
@@ -110,7 +112,8 @@
 
                 <div class="d-flex justify-content-center avaliation_container mb-">
                     <input class="btn btn-dark btn-md" style="width: 110px;" type="submit" value="Confirmar">
-                    <a class="btn btn-dark btn-md" style="width: 100px;" role="button" href="{% url 'home' %}">Voltar</a>
+                    <a class="btn btn-dark btn-md" style="width: 100px;" role="button"
+                        href="{% url 'home' %}">Voltar</a>
                 </div>
             </form>
         </div>

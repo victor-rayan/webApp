@@ -1,11 +1,14 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from .forms import CreateForm
-from django.views.generic import ListView, DetailView
-from .models import Avaliation
-from django.urls import reverse_lazy, reverse
-from django.db.models import Avg, Max, Min, Sum
 from django.contrib import messages
+from django.db.models import Avg, Max, Min, Sum
+from django.urls import reverse_lazy, reverse
+from .models import Avaliation, Account
+from django.views.generic import ListView, DetailView, CreateView
+from django.core.paginator import Paginator
+from .forms import CreateForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 
 
 # class HomeView(ListView):
@@ -16,6 +19,10 @@ from django.contrib import messages
 # identfy = get_object_or_404(Avaliation, id = self.kwargs[])
 # context["total_likes"] = total_likes
 # return context
+
+class HomeView(ListView):
+    model = Avaliation
+    template_name = 'home.html'
 
 
 class AvaliationDetailView(DetailView):
@@ -40,11 +47,16 @@ class AvaliationDetailView(DetailView):
 
 
 def createForm(request):
+    try:
+        author = Account.object.get(pk=request.user.id)
+    except:
+        return redirect('/')
+    author.save()
 
     if request.method == 'POST':
         form = CreateForm(request.POST)
-
         if form.is_valid():
+            form.instance.author_id = request.user.id
             form.save()
             return redirect('home')
         else:
@@ -104,7 +116,10 @@ def recommendationAvaliation(request):
     avaliationListWorse = Avaliation.objects.exclude(
         ratingAvaliation__gte=average['ratingAvaliation__avg'])[:6]
 
-    return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
+    if (not avaliationListGreater) and (not avaliationWorse):
+        return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
+
+    return render(request, '../templates/home.html', {})
 
 
 def searchAvaliations(request):
@@ -118,3 +133,16 @@ def searchAvaliations(request):
         return render(request, '../templates/avaliations/list_avaliation.html', {'search': search, 'users_search': users_search})
     else:
         return render(request, '../templates/avaliations/list_avaliation.html', {})
+
+
+def CategoryView(request, cats):
+    category_avaliations = Avaliation.objects.filter(category=cats)
+    return render(request, '../templates/categories/categories.html', {'cats': cats.title(), 'category_avaliations': category_avaliations})
+
+
+def userAvaliations(request):
+    avaliations = Avaliation.objects.all()
+    avaliations = avaliations.filter(author_id=request.user.id)
+    for avaliation in avaliations:
+        print(avaliation.titleAvaliation)
+    return render(request, 'profile/profile.html', {"avaliations": avaliations})

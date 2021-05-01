@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
-
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from account.forms import RegistrationForm, AccountAuthenticationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 # Create your views here.
 def register_view(request, *args, **kwargs):
