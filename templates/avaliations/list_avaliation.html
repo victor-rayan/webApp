@@ -59,25 +59,27 @@
           {% csrf_token %}
     
          <div class="pull-right">
-            <!--
+            
             {% if user.is_authenticated %}
             {% if liked %}
-            {{total_likes}}
+            {{user_search.total_likes}}
             <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
-              value="{{ avaliation.id }}"><i class="like fa fa-heart"></i></button>
+              value="{{ user_search.id }}"><i class="like fa fa-heart"></i></button>
             {% else %}
-            {{total_likes}}
+            {{user_search.total_likes}}
             <button style="background-color: white;border: none; font-size: larger;"  name="avaliation_id" ,
-              value="{{ avaliation.id }}"><i class="like fa fa-heart-o"></i></button>
+              value="{{ user_search.id }}"><i class="like fa fa-heart-o"></i></button>
     
     
             {% endif %}
     
             {% else %}
-            {{total_likes}} 
+            {{user_search.total_likes}} 
             <a href="{% url 'login' %}"><i class="like fa fa-heart-o ml-1" style="color: black;"></i></a>  
             {% endif %}
-            --> 
+            
+            
+           
           </div>
             <div class="review-rating pull-left">
               <i class="star fa fa-star{% if user_search.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
