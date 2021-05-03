@@ -50,7 +50,7 @@ def createForm(request):
     try:
         author = Account.object.get(pk=request.user.id)
     except:
-        return redirect('/')
+        return redirect('/login')
     author.save()
 
     if request.method == 'POST':
@@ -116,10 +116,7 @@ def recommendationAvaliation(request):
     avaliationListWorse = Avaliation.objects.exclude(
         ratingAvaliation__gte=average['ratingAvaliation__avg'])[:6]
 
-    if (not avaliationListGreater) and (not avaliationWorse):
-        return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
-
-    return render(request, '../templates/home.html', {})
+    return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
 
 
 def searchAvaliations(request):
@@ -128,7 +125,7 @@ def searchAvaliations(request):
 
         search = request.POST['search']
         users_search = Avaliation.objects.filter(
-            user_instagram__contains=search)
+            store_instagram__contains=search)
 
         return render(request, '../templates/avaliations/list_avaliation.html', {'search': search, 'users_search': users_search})
     else:

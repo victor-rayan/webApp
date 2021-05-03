@@ -33,72 +33,60 @@
   }
 </style>
 
-current user: {{user.id}}
-post auther:{{avaliation.author.id}}
-
-<h1> {{avaliation.store_instagram}} - </h1>
-
-{{avaliation.description|safe}}
-
-{% if user.is_authenticated %}
-{% if user.id == avaliation.author.id %}
-<a href="{% url 'update-form' avaliation.pk %}"> Edit </a>
-<a href="{% url 'delete-form' avaliation.pk %}"> delete </a>
-{% endif %}
-<br>
-{% if liked %}
-<button type="submit" , name="avaliation_id" , value="{{ avaliation.id }}" ,
-  class="btn btn-danger btn-sm">Unlike</button>
-{% else %}
-<button type="submit" , name="avaliation_id" , value="{{ avaliation.id }}" ,
-  class="btn btn-primary btn-sm">like</button>
-
 <div class="card row col-10 col-sm-8">
   <div class="card-body">
     <div class="form-group">
       <div class="row">
         <i class="fa fa-shopping-basket"></i>
         <h3 class="ml-2">{{avaliation.store_instagram}}</h3>
-        <a class="war" href="{% url 'report' %}"><i class="fa fa-warning"></i></a>
+        <a class="war" href="{% url 'report' %}"><i class="fa fa-warning" title="Denunciar"></i></a>
       </div>
       <p class="card-text" style="text-align:justify">{{avaliation.description}}</p>
 
       <form action="{% url 'like_avaliation' avaliation.pk %}" method="POST">
-        {% csrf_token %}
-
-        <div class="pull-right">
-          {% if user.is_authenticated %}
-          {% if liked %}
-          {{total_likes}}
-          <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
-            value="{{ avaliation.id }}"><i class="like fa fa-heart"></i></button>
-          {% else %}
-          {{total_likes}}
-          <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
-            value="{{ avaliation.id }}"><i class="like fa fa-heart-o"></i></button>
-
-
-          {% endif %}
-
-          {% else %}
-          {{total_likes}}
-          <a href="{% url 'login' %}"><i class="like fa fa-heart-o ml-1" style="color: black;"></i></a>
-          {% endif %}
-        </div>
-        <div class="review-rating pull-left">
-          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
-          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
-          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
-          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
-          <i class="star fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
-
-      </form>
 
 
 
+        <form action="{% url 'like_avaliation' avaliation.pk %}" method="POST">
+          {% csrf_token %}
+
+          <div class="pull-right">
+
+            {% if user.is_authenticated %}
+            {% if liked %}
+            {{total_likes}}
+            <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
+              value="{{ avaliation.id }}"><i class="like fa fa-heart" title="Desfazer Curtir"></i></button>
+            {% else %}
+            {{total_likes}}
+            <button style="background-color: white;border: none; font-size: larger;" name="avaliation_id" ,
+              value="{{ avaliation.id }}"><i class="like fa fa-heart-o" title="Curtir"></i></button>
+
+            {% endif %}
+
+            {% else %}
+            {{total_likes}}
+            <a href="{% url 'login' %}"><i class="like fa fa-heart-o ml-1" title="FaÃ§a login para Curtir"
+                style="color: black;"></i></a>
+            {% endif %}
+          </div>
+          <div class="review-rating pull-left" title="{{ avaliation.ratingAvaliation }} de 5 estrelas">
+            <i class="star fa fa-star{% if avaliation.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
+            <i class="star fa fa-star{% if avaliation.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
+            <i class="star fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
+            <i class="star fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
+            <i class="star fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
+            <div />
+            {% if user.is_authenticated %}
+            {% if user.id == avaliation.author.id %}
+            <a href="{% url 'update-form' avaliation.pk %}"> Edit </a>
+            <a href="{% url 'delete-form' avaliation.pk %}"> delete </a>
+            {% endif %}
+            {% endif %}
+            <br>
+        </form>
     </div>
   </div>
-
 </div>
 </div>
 
