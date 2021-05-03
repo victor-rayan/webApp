@@ -6,7 +6,7 @@
 # Instalação e ativação do projeto
 
 ### 1. clone o repositório na sua máquina:
-```https://github.com/Me-Adota/website.git``` 
+```https://github.com/AvaInsta/webApp.git``` 
 
 ### 2. Ativar seu ambiente virtual:
 ```virtualenv {virtual_env_name}```
