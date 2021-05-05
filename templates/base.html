@@ -41,6 +41,12 @@
           <li class="nav-item">
             <a class="nav-link" style="color: white;" href="#">Recomendação</a>
           </li>
+          {% if user.is_authenticated %}
+          <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
+          <li class="nav-item">
+            <a class="nav-link" style="color: white;" href="{% url 'profile' %}">Perfil</a>
+          </li>
+          {% endif %}
         </ul>
         <ul class="navbar-nav ml-auto">
           <li>
@@ -71,7 +77,7 @@
       </div>
     </nav>
   </div>
-  <div class="conteudo d-flex justify-content-center">
+  <div class="conteudo d-flex justify-content-center" >
     {% block content %}
     {% endblock %}
   </div>
