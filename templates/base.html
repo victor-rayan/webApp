@@ -29,17 +29,26 @@
       <div class="collapse navbar-collapse" id="collapse_target">
         <a class="navbar-brand" href="{% url 'home' %}"><img class="logotipo" src="{% static 'img/logo.png' %}"></a>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" style="color: white;" href="#">Categoria</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;" href="#">Categoria</a>
+              <div class="dropdown-menu" aria-labelledby="category">
+                <a class="dropdown-item" href="">Autos e Peças</a>
+                <a class="dropdown-item" href="">Para a Sua Casa</a>
+                <a class="dropdown-item" href="">Eletrônicos e celulares</a>
+                <a class="dropdown-item" href="">Musicas e Hobbies</a>
+                <a class="dropdown-item" href="">Artigos Infantis</a>
+                <a class="dropdown-item" href="">Moda e Beleza</a>
+                <a class="dropdown-item" href="">Animais de Estimação</a>
+                <a class="dropdown-item" href="">Serviços</a>
+                <a class="dropdown-item" href="">Agro e Industrias</a>
+                <a class="dropdown-item" href="">Esportes e Lazer</a>
+                <a class="dropdown-item" href="">Comercio e Escritorio</a>
+              </div>
           </li>
           <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
           <li class="nav-item">
             <a h class="nav-link" style="color: white;" href="{% url 'create-form' %}">Criar
               Avaliação</a>
-          </li>
-          <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>
-          <li class="nav-item">
-            <a class="nav-link" style="color: white;" href="#">Recomendação</a>
           </li>
           {% if user.is_authenticated %}
           <span class="navbar-text d-none d-lg-block" style="color:white;">|</span>

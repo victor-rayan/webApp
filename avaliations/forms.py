@@ -8,14 +8,14 @@ choice_list = [
     ('autos_e_pecas', 'Autos e Peças'),
     ('para_sua_casa', 'Para a Sua Casa'),
     ('eletronicos_e_celulares', 'Eletrônicos e celulares'),
-    ('musica_e_hobbies', 'Musicas e Hobbies'),
+    ('musica_e_hobbies', 'Músicas e Hobbies'),
     ('artigos_infatis', 'Artigos Infantis'),
     ('moda_e_beleza', 'Moda e Beleza'),
     ('animais_de_estimacao', 'Animais de Estimação'),
     ('servicos', 'Serviços'),
-    ('agro_e_industrias', 'Agro e Industrias'),
+    ('agro_e_industrias', 'Agro e Indústrias'),
     ('esportes_e_lazer', 'Esportes e Lazer'),
-    ('comercio_e_escritorio', 'Comercio e Escritorio'),
+    ('comercio_e_escritorio', 'Comércio e Escritório'),
 ]
 
 # CKEDITOR_CONFIGS = {
