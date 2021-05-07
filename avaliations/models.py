@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from account.models import Account
+from . import validate
 # Create your models here.
 
 
@@ -25,7 +26,7 @@ class Avaliation(models.Model):
     author = models.ForeignKey(
         Account, on_delete=models.CASCADE, default=None, null=True)
     store_instagram = models.CharField(
-        max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)')
+        max_length=25, verbose_name='Instagram Avaliado(Ex:@lojinha)', validators=[clear_user_instagram])
     category = models.CharField(max_length=25, choices=type_CATEGORY,)
     description = models.TextField(verbose_name='Conte sobre o produto')
     titleAvaliation = models.CharField(

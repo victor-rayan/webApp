@@ -17,6 +17,7 @@ def createReportForm(request):
         if form.is_valid():
             form.save()
             return redirect('home')
+        return render(request, '../templates/report/reportform.html', {'form': form})
 
     else:
         form = ReportForm()

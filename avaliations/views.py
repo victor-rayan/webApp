@@ -59,9 +59,7 @@ def createForm(request):
             form.instance.author_id = request.user.id
             form.save()
             return redirect('home')
-        else:
-            return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
-
+        return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
     else:
         form = CreateForm()
         return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
@@ -77,7 +75,7 @@ def updateForm(request, pk):
             form.save()
             return (redirect('home'))
         else:
-            return render(request, '../templates/avaliations/createavaliation.html', context)
+            return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
 
     context = {'form': form}
     return render(request, '../templates/avaliations/createavaliation.html', context)
@@ -112,9 +110,10 @@ def recommendationAvaliation(request):
     average = Avaliation.objects.all().aggregate(Avg('ratingAvaliation'))
 
     avaliationListGreater = Avaliation.objects.exclude(
-        ratingAvaliation__lte=average['ratingAvaliation__avg'])[:6]
+        ratingAvaliation__lte=average['ratingAvaliation__avg']).order_by('-ratingAvaliation')[:6]
+
     avaliationListWorse = Avaliation.objects.exclude(
-        ratingAvaliation__gte=average['ratingAvaliation__avg'])[:6]
+        ratingAvaliation__gte=average['ratingAvaliation__avg']).order_by('ratingAvaliation')[:6]
 
     return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
 

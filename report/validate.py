@@ -6,4 +6,4 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 def clear_user_instagram(value):
     if value[0] == '@':
         return value
-    raise ValidationError("ERRO! Faltou o '@'")
+    raise ValidationError("Tente colocar um @ como primeiro caracter")
