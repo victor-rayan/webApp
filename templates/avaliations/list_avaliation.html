@@ -51,7 +51,13 @@
           <div class="row">
             <i class="fa fa-shopping-basket"></i>
             <h3 class="ml-2">{{user_search.store_instagram}}</h3>
-            <a class="war" href="{% url 'report' %}"><i class="fa fa-warning"></i></a>
+            <a class="war card-link float-right mr-2" href="{% url 'report' %}"><i class="mr-2 fa fa-warning" title="Denunciar"></i></a>
+            {% if user_search.user.is_authenticated %}
+            {% if user_search.user.id == user_search.avaliation.author.id %}
+            <a class="war card-link float-right" href="{% url 'update-form' avaliation.pk %}"> <i class="mr-2 fa fa-pencil" title="Editar"></i> </a>
+            <a class="war card-link float-right" href="{% url 'delete-form' avaliation.pk %}"> <i class="ml-1 fa fa-trash" title="Excluir"></i> </a>
+            {% endif %}
+            {% endif %}
           </div>
           <p class="card-text" style="text-align:justify">{{user_search.description}}</p>
 

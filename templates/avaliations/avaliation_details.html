@@ -33,15 +33,15 @@
 <div class="card row col-10 col-sm-8">
   <div class="card-body">
     <div class="form-group">
-      <a class="war card-link float-right" href="{% url 'report' %}"><i class="fa fa-warning" title="Denunciar"></i></a>
+      <a class="war card-link float-right" href="{% url 'report' %}"><i class="ml-2 fa fa-warning" title="Denunciar"></i></a>
           {% if user.is_authenticated %}
           {% if user.id == avaliation.author.id %}
-            <a class="war card-link float-right" href="{% url 'update-form' avaliation.pk %}"> <i class="fa fa-pencil"></i> </a>
-            <a class="war card-link float-right" href="{% url 'delete-form' avaliation.pk %}"> <i class="fa fa-trash"></i> </a>
+            <a class="war card-link float-right" href="{% url 'update-form' avaliation.pk %}"> <i class="mr-2 fa fa-pencil" title="Editar"></i> </a>
+            <a class="war card-link float-right" href="{% url 'delete-form' avaliation.pk %}"> <i class="ml-1 fa fa-trash" title="Excluir"></i> </a>
           {% endif %}
           {% endif %}
-          <h3 class="card-subtitle ml-2"><i class="fa fa-shopping-basket"></i>{{avaliation.store_instagram}}</h3>
-          <p class="card-text" style="text-align:justify">{{avaliation.description}}</p>
+          <h3 class="card-subtitle"><i class="mr-2 fa fa-shopping-basket"></i>{{avaliation.store_instagram}}</h3>
+          <p class="card-text mt-2" style="text-align:justify">{{avaliation.description}}</p>
         <form action="{% url 'like_avaliation' avaliation.pk %}" method="POST">
           {% csrf_token %}
 
