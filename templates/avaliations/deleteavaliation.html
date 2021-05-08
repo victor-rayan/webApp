@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} Criar formulario de avaliação {% endblock %}
+{% block title %} Exluir avaliação {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
 
-    <p>Quer mesmo deletar a avaliação feita ao usuário {{item}}?</p>
-
+<div class="card col-8 text-center border border-0">
+ <div class="form-group">
+    <h3>Quer mesmo deletar a avaliação feita a loja "{{item}}"?</h3>
     <form action="{% url 'delete-form' item.id %}" method="POST">
         {% csrf_token %}
-        <div>
-            <button type="submit">Excluir</button>
-            <a href="{% url 'home' %}">Não, esquece!</a>
+        <div class="justify-content-center">
+            <input class="btn btn-dark" style="width: 110px;" type="submit" value="Excluir">
+            <a class="btn btn-dark" style="width: 100px;" role="button"
+                        href="{% url 'home' %}">Cancelar</a>
         </div>
     </form>
+ </div> 
+</div>
 
 {% endblock %}
