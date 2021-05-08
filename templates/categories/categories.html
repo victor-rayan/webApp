@@ -35,37 +35,37 @@
     <div class="col col-12 col-md-3 d-none d-md-block border-right border-dark">
       <ul class="list-group">
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Autos e Peças</a>
+          <a class="" href="{% url 'category' 'autos_e_pecas' %}" style="color: black;">Autos e Peças</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Para a Sua Casa</a>
+          <a class="" href="{% url 'category' 'para_sua_casa' %}" style="color: black;">Para a Sua Casa</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Eletrônicos e celulares</a>
+          <a class="" href="{% url 'category' 'eletronicos_e_celulares' %}" style="color: black;">Eletrônicos e celulares</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Músicas e Hobbies</a>
+          <a class="" href="{% url 'category' 'musica_e_hobbies' %}" style="color: black;">Músicas e Hobbies</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Artigos Infantis</a>
+          <a class="" href="{% url 'category' 'artigos_infatis' %}" style="color: black;">Artigos Infantis</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Moda e Beleza</a>
+          <a class="" href="{% url 'category' 'moda_e_beleza' %}" style="color: black;">Moda e Beleza</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Animais de Estimação</a>
+          <a class="" href="{% url 'category' 'animais_de_estimacao' %}" style="color: black;">Animais de Estimação</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Serviços</a>
+          <a class="" href="{% url 'category' 'servicos' %}" style="color: black;">Serviços</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Agro e Indústrias</a>
+          <a class="" href="{% url 'category' 'agro_e_industrias' %}" style="color: black;">Agro e Indústrias</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Esportes e Lazer</a>
+          <a class="" href="{% url 'category' 'esportes_e_lazer' %}" style="color: black;">Esportes e Lazer</a>
         </li>
         <li class="list-group-item border-0">
-          <a class="" href="" style="color: black;">Comércio e Escritório</a>
+          <a class="" href="{% url 'category' 'comercio_e_escritorio' %}" style="color: black;">Comércio e Escritório</a>
         </li>
       </ul>
     </div>
@@ -108,7 +108,7 @@
             {% endfor %}
 
             {% else %}
-            <h2> Sorry, dont have nothing in this category yet :( </h2>
+            <h2 class="text-center"> Desculpa, não temos nada nessa categoria ainda :( </h2>
 
           </ul>
         </div>
