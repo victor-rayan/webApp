@@ -18,14 +18,13 @@
         justify-content: center;
         height: unset;
         align-items: center;
-        margin-bottom: 3rem;
     }
 
     .rating {
 
         display: flex;
         margin-left: 50%;
-        transform: translate(-50%, -50%) rotateY(180deg);
+        transform: translate(-50%, -10%) rotateY(180deg);
     }
 
     .rating input {
@@ -73,7 +72,7 @@
     <div class="d-flex justify-content-center">
 
         <div class="d-flex justify-content-center form_container">
-            <form method="POST" action="">
+            <form class="mb-4" method="POST" action="">
                 <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação</h3>
                 {% csrf_token %}
 
@@ -100,15 +99,16 @@
                 </div>
                 <div class="form-group">
                     <label for="basic-url">Sua nota de avaliação: </label>
-                </div>
-                <div class="input-rating">
-
-                    <div class="rating">
-                        <input type="radio" id="star5" name="ratingAvaliation" value="5" /><label for="star5"></label>
-                        <input type="radio" id="star4" name="ratingAvaliation" value="4" /><label for="star4"></label>
-                        <input type="radio" id="star3" name="ratingAvaliation" value="3" /><label for="star3"></label>
-                        <input type="radio" id="star2" name="ratingAvaliation" value="2" /><label for="star2"></label>
-                        <input type="radio" id="star1" name="ratingAvaliation" value="1" /><label for="star1"></label>
+                    <br />
+                    <div class="input-rating" style="height: 45px;">
+                        
+                        <div class="rating">
+                            <input type="radio" id="star5" name="ratingAvaliation" value="5" /><label for="star5"></label>
+                            <input type="radio" id="star4" name="ratingAvaliation" value="4" /><label for="star4"></label>
+                            <input type="radio" id="star3" name="ratingAvaliation" value="3" /><label for="star3"></label>
+                            <input type="radio" id="star2" name="ratingAvaliation" value="2" /><label for="star2"></label>
+                            <input type="radio" id="star1" name="ratingAvaliation" value="1" /><label for="star1"></label>
+                        </div>
                     </div>
                 </div>
 
