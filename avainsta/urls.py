@@ -19,8 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from avaliations.views import (
+<<<<<<< HEAD
     HomeView, likeView, AvaliationDetailView, CategoryView
+=======
+    likeView, AvaliationDetailView, recommendationAvaliation, searchAvaliations, CategoryView
+>>>>>>> passwordChange
 )
+from report.views import createReportForm
 from account.views import (
     register_view,
     login_view,
@@ -28,32 +33,44 @@ from account.views import (
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name="home"),
-
+    path('',  recommendationAvaliation, name="home"),
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),
     path('register/', register_view, name="register"),
 
-    # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'), 
-        name='password_change_done'),
+    # Denuncia
+    path('report/', createReportForm, name="report"),
 
-    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_reset/password_change.html'), 
-        name='password_change'),
+    # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_reset/password_change_done.html'),
+         name='password_change_done'),
+
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='password_reset/password_change.html'),
+         name='password_change'),
 
     path('password_reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset/password_reset_done.html'),
-     name='password_reset_done'),
+         name='password_reset_done'),
 
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),
+         name='password_reset_confirm'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(),
+         name='password_reset'),
+
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset/password_reset_complete.html'),
-     name='password_reset_complete'),
+         name='password_reset_complete'),
 
+<<<<<<< HEAD
     path('category/<str:cats>/', CategoryView, name = 'category'),
     path('avaliation/', include('avaliations.urls'), name="avaliation"), 
     path('avaliationDetail/<int:pk>', AvaliationDetailView.as_view(), name='avaliationDetail'),
+=======
+    path('category/<str:cats>/', CategoryView, name='category'),
+    path('avaliation/', include('avaliations.urls'), name="avaliation"),
+    path('avaliationDetail/<int:pk>',
+         AvaliationDetailView.as_view(), name='avaliationDetail'),
+>>>>>>> passwordChange
     path('like/<int:pk>', likeView, name='like_avaliation'),
+    path('search/', searchAvaliations, name='search_avaliation')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,

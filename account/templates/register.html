@@ -3,10 +3,6 @@
 
 {% block content %}
 <style>
-  .btn-block {
-    display: inline-block;
-    width: 40%;
-  }
   .fdb{
       display: flex;
       justify-content: center;
@@ -29,24 +25,24 @@
       width: 11rem;
       border-color: #ced4da;
   }
-  .container-fluid{
+  .container{
     display: flex;
-    height: 100vh;
     align-items: center;
     justify-content: center;
   }
-  .btn-sm {
-  
-  justify-content: center;
-  
-}
+  .btns {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #1A1F26;
+    width: 100px;
+  }
   
  
 </style>
 
 
 
-<div class="container-fluid">
+<div class="container">
   
   <div class="row justify-content-center">
    
@@ -108,13 +104,10 @@
           </div> 
           </div>
 
-          <div class="fdb form-group">
-            
+          <div class="fdb form-group">  
               <span class="mr-2">Nascimento:</span>
               <input type="date" name="birth_date" id="inputDate" class="form-control" >
-            
           </div>
-
 
           {% for field in registration_form %}
           <p>
@@ -127,18 +120,11 @@
           <div style="color: green">
             <p>{{ registration_form.non_field_erros}}</p>
           </div>
-
           {% endif %}
-
-          
-
-          <span>
-            
-            <button class="btn-sm ml-4 btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Registrar</button>
-            <button class="btn-sm btn-dark btn-block" style="background-color: #1A1F26;" type="submit">Voltar</button>
-          
-          </span>
-
+          <div class="container">
+            <button class="btns btn btn-md btn-dark" type="submit">Registrar</button>
+            <button class="btns btn btn-md btn-dark" type="reset"><a href="{% url 'home' %}" style="text-decoration: none;">Voltar</a></button>
+          </div>
         </div>
       </form>
 

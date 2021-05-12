@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
@@ -5,13 +6,43 @@ from .forms import CreateForm
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Avaliation, Account
+=======
+from django.contrib import messages
+from django.db.models import Avg, Max, Min, Sum
+>>>>>>> passwordChange
 from django.urls import reverse_lazy, reverse
+from .models import Avaliation, Account
+from django.views.generic import ListView, DetailView, CreateView
+from django.core.paginator import Paginator
+from .forms import CreateForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 
+
+<<<<<<< HEAD
+=======
+# class HomeView(ListView):
+#   model = Avaliation
+#  template_name = 'home.html'
+
+# def get_context_data(self, *args, **kwargs):
+# identfy = get_object_or_404(Avaliation, id = self.kwargs[])
+# context["total_likes"] = total_likes
+# return context
+
+>>>>>>> passwordChange
 class HomeView(ListView):
     model = Avaliation
     template_name = 'home.html'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> passwordChange
 class AvaliationDetailView(DetailView):
+
     model = Avaliation
     template_name = '../templates/avaliations/avaliation_details.html'
 
@@ -35,7 +66,11 @@ def createForm(request):
     try:
         author = Account.object.get(pk=request.user.id)
     except:
+<<<<<<< HEAD
         return redirect('/')
+=======
+        return redirect('/login')
+>>>>>>> passwordChange
     author.save()
 
     if request.method == 'POST':
@@ -43,7 +78,8 @@ def createForm(request):
         if form.is_valid():
             form.instance.author_id = request.user.id
             form.save()
-            return redirect('/')
+            return redirect('home')
+        return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
     else:
         form = CreateForm()
         return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
@@ -57,7 +93,9 @@ def updateForm(request, pk):
         form = CreateForm(request.POST, instance=edit)
         if form.is_valid():
             form.save()
-            return (redirect('/'))
+            return (redirect('home'))
+        else:
+            return render(request, '../templates/avaliations/createavaliation.html', {'form': form})
 
     context = {'form': form}
     return render(request, '../templates/avaliations/createavaliation.html', context)
@@ -88,13 +126,49 @@ def likeView(request, pk):
     return HttpResponseRedirect(reverse('avaliationDetail', args=[str(pk)]))
 
 
+<<<<<<< HEAD
 def CategoryView(request, cats):
     category_avaliations = Avaliation.objects.filter(category=cats)
     return render(request, '../templates/categories/categories.html', {'cats':cats.title(), 'category_avaliations':category_avaliations})
+=======
+def recommendationAvaliation(request):
+    average = Avaliation.objects.all().aggregate(Avg('ratingAvaliation'))
+
+    avaliationListGreater = Avaliation.objects.exclude(
+        ratingAvaliation__lte=average['ratingAvaliation__avg']).order_by('-ratingAvaliation')[:6]
+
+    avaliationListWorse = Avaliation.objects.exclude(
+        ratingAvaliation__gte=average['ratingAvaliation__avg']).order_by('ratingAvaliation')[:6]
+
+    return render(request, '../templates/home.html', {'avaliationsGreater': avaliationListGreater, 'average': average['ratingAvaliation__avg'], 'avaliationsWorse': avaliationListWorse})
+
+
+def searchAvaliations(request):
+
+    if request.method == "POST":
+
+        search = request.POST['search']
+        users_search = Avaliation.objects.filter(
+            store_instagram__contains=search)
+
+        return render(request, '../templates/avaliations/list_avaliation.html', {'search': search, 'users_search': users_search})
+    else:
+        return render(request, '../templates/avaliations/list_avaliation.html', {})
+
+
+def CategoryView(request, cats):
+    category_avaliations = Avaliation.objects.filter(category=cats)
+    return render(request, '../templates/categories/categories.html', {'cats': cats.title(), 'category_avaliations': category_avaliations})
+
+>>>>>>> passwordChange
 
 def userAvaliations(request):
     avaliations = Avaliation.objects.all()
     avaliations = avaliations.filter(author_id=request.user.id)
     for avaliation in avaliations:
         print(avaliation.titleAvaliation)
+<<<<<<< HEAD
     return render(request, 'profile/profile.html', {"avaliations": avaliations})
+=======
+    return render(request, 'profile/profile.html', {"avaliations": avaliations})
+>>>>>>> passwordChange
