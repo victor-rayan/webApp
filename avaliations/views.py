@@ -24,6 +24,7 @@ class HomeView(ListView):
     model = Avaliation
     template_name = 'home.html'
 
+
 class AvaliationDetailView(DetailView):
 
     model = Avaliation
