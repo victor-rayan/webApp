@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{cats}} {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+  .star.fa {
+    color: #fbbe2e;
+    font-size: 30px;
+  }
+
+  .ico {
+    color: black;
+    font-size: 30px;
+  }
+
+  .like.fa:hover {
+    color: rgb(55, 0, 255);
+  }
+
+  .war {
+    color: black;
+    font-size: 30px;
+  }
+
+  .card {
+    border-color: black;
+    border-width: 2px;
+  }
+</style>
+
+<div class="container-fluid" style="margin-right: 15px;">
+  <div class="row">
+    <div class="col col-12 col-md-3 d-none d-md-block border-right border-dark">
+      <ul class="list-group">
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'autos_e_pecas' %}" style="color: black;">Autos e Peças</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'para_sua_casa' %}" style="color: black;">Para a Sua Casa</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'eletronicos_e_celulares' %}" style="color: black;">Eletrônicos e celulares</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'musica_e_hobbies' %}" style="color: black;">Músicas e Hobbies</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'artigos_infatis' %}" style="color: black;">Artigos Infantis</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'moda_e_beleza' %}" style="color: black;">Moda e Beleza</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'animais_de_estimacao' %}" style="color: black;">Animais de Estimação</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'servicos' %}" style="color: black;">Serviços</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'agro_e_industrias' %}" style="color: black;">Agro e Indústrias</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'esportes_e_lazer' %}" style="color: black;">Esportes e Lazer</a>
+        </li>
+        <li class="list-group-item border-0">
+          <a class="" href="{% url 'category' 'comercio_e_escritorio' %}" style="color: black;">Comércio e Escritório</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col col-12 col-md-9">
+            {% if category_avaliations %}
+      <h2 class="text-center mb-4"> {{cats}} </h2>
+        <div class="container col col-12">
+          <ul class="list-group col-12 justify-content-center align-middle" style="padding-right: 0px;">
+
+            {% for avaliation in category_avaliations %}
+            <li class="list-group-item" style="border:none;">
+              <div class="card">
+                <div class="card-body">
+                    <a class="card-link text-left" href="{% url 'avaliationDetail' avaliation.pk %}" style="text-decoration: none; color: black; font-size: 25px;">
+                      {{avaliation.titleAvaliation}}
+                    </a>
+                    <a class="card-link war float-right" href="{% url 'report' %}"><i class="fa fa-warning" title="Denunciar"></i></a>
+                    <div class="card-subtitle text-left ml-1"><i class="fa fa-shopping-basket mr-1"></i>{{avaliation.store_instagram}}</div>
+                    <p class="card-text mt-2 ml-2" style="text-align:justify">{{avaliation.description}}</p>
+                    <div class="review-rating pull-left" title="{{ avaliation.ratingAvaliation }} de 5 estrelas">
+                      <i class="star fa fa-star{% if avaliation.ratingAvaliation < 1 %}-o empty{% endif %}"></i>
+                      <i class="star fa fa-star{% if avaliation.ratingAvaliation < 2 %}-o empty{% endif %}"></i>
+                      <i class="star fa fa-star{% if avaliation.ratingAvaliation < 3 %}-o empty{% endif %}"></i>
+                      <i class="star fa fa-star{% if avaliation.ratingAvaliation < 4 %}-o empty{% endif %}"></i>
+                      <i class="star fa fa-star{% if avaliation.ratingAvaliation < 5 %}-o empty{% endif %}"></i>
+                    </div>
+                    <form class="card-link float-right" action="{% url 'like_avaliation' avaliation.pk %}" method="POST">
+                      {% csrf_token %}
+                      {% if user.is_authenticated %}
+                      {% if user.id == avaliation.author.id %}
+                      <a href="{% url 'update-form' avaliation.pk %}"> <i class="ico fa fa-pencil"></i> </a>
+                      <a href="{% url 'delete-form' avaliation.pk %}"> <i class="ico fa fa-trash"></i> </a>
+                      {% endif %}
+                      {% endif %}
+                    </form>
+                  
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+
+            {% else %}
+            <h2 class="text-center"> Desculpa, não temos nada nessa categoria ainda :( </h2>
+
+          </ul>
+        </div>
+          {% endif %}
+        </div>
+      </div>
+</div>
+
+
+<!--
+{% if category_avaliations %}
+<h1> {{cats}} </h1>
+
+<ul>
+  {% for avaliation in category_avaliations %}
+
+  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
+    {{avaliation.store_instagram}}<br /></li>
+  <br /><br />
+  <hr>
+  <br />
+
+
+  {% endfor %}
+
+  {% else %}
+  <h2> Sorry, dont have nothing in this category yet :( </h2>
+
+</ul>
+{% endif %}
+-->
+{% endblock %}

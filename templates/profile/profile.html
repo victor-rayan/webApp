@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Meu perfil {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+  .fa {
+    font-size: 30px;
+  }
+
+  .card {
+    border-color: black;
+    border-width: 2px;
+  }
+
+  .ico {
+    color: black;
+    font-size: 30px;
+  }
+  .profile_icon {
+    color: black;
+    font-size: 50px;
+  }
+  .info_user {
+    color: black;
+    font-size: 25px;
+  }
+
+</style>
+
+<div class="container d-flex justify-content-center" style="height:100%; width: 100%;">
+  <div class="row justify-content-center" style="height:100%; width: 100%;">
+    <div class="col col-12 col-lg-3">
+        <div class="list-group-item border-0 d-flex justify-content-center">
+          <div class="container d-none d-lg-block" style="color: black; text-decoration:none;">
+            <i class="profile_icon fa fa-user-circle"></i>
+            <span class="ml-2" style="font-size: 25px;">Olá, {{ request.user.username }}.</span>
+          </div>
+          <button class="btn btn-link d-block d-lg-none" type="button" data-toggle="collapse" data-target="#info" aria-expanded="false" aria-controls="info" style="color: black; text-decoration:none;">
+            <i class="profile_icon fa fa-user-circle"></i>
+            <span class="ml-2" style="font-size: 25px;">Olá, {{ request.user.username }}.</span>
+          </button>
+        </div>
+        <div id="info" class="collapse hide d-lg-block">
+          <i class="info_user fa fa-instagram"></i>
+          <span class="ml-2" style="font-size: 18px;">{{ request.user.instagram }}</span>
+          <br />
+          <i class="info_user fa fa-envelope"></i>
+          <span class="ml-2" style="font-size: 18px;">{{ request.user.email }}</span>
+          <br />
+          <i class="info_user fa fa-map-marker"></i>
+          <span class="ml-2" style="font-size: 18px;">{{ request.user.state }}</span>
+          <br />
+          <i class="info_user fa fa-lock"></i>
+          <span class="ml-2" style="font-size: 18px;"><a href="{% url 'password_change' %}" style="color: #212529;">Alterar senha.</a></span>
+        </div>
+    </div>
+    <div class="col col-12 col-lg-9 container">
+      <ul class="list-group col-12 justify-content-center align-middle" style="padding-right: 0px;">
+        <div class="row justify-content-center align-middle">
+          <h2>Suas avaliações</h2>
+        </div>
+      
+        {% for avaliation in avaliations %}
+        <li class="list-group-item text-center" style="border:none;">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col col-12 col-lg-10">
+                  <div class="col col-12 col-sm-12"><a class="text-dark" href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a></div>
+                  {% if user.is_authenticated %}
+                  <div class="col col-12 col-sm-12">{{avaliation.store_instagram}}</div>
+                  {% if user.id == avaliation.author.id %}
+                </div>
+                <div class="col col-12 col-lg-2">
+                  <a href="{% url 'delete-form' avaliation.pk %}"> <i class="ico fa fa-trash"></i></a>
+                  <a href="{% url 'update-form' avaliation.pk %}"> <i class="ico fa fa-pencil"></i></a>
+                </div>
+                    {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item text-center" style="border:none;">Parece que não tem nada aqui :(</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

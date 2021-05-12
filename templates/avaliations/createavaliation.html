@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Criar avaliação {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .avaliation_container .btn {
+        margin-left: 10px;
+        margin-right: 10px;
+        background-color: #1A1F26;
+        width: 100px;
+
+    }
+
+    .form-group {
+
+        justify-content: center;
+        height: unset;
+        align-items: center;
+    }
+
+    .rating {
+
+        display: flex;
+        margin-left: 50%;
+        transform: translate(-50%, -10%) rotateY(180deg);
+    }
+
+    .rating input {
+        display: none;
+    }
+
+    .rating label {
+        display: block;
+        width: 45px;
+
+    }
+
+    .rating label:before {
+        content: '\f005';
+        font-family: fontAwesome;
+        position: relative;
+        display: block;
+        font-size: 45px;
+        color: #101010;
+
+    }
+
+    .rating label:after {
+        content: '\f005';
+        font-family: fontAwesome;
+        position: absolute;
+        display: block;
+        font-size: 45px;
+        color: #fbbe2e;
+        top: 0;
+        opacity: 0;
+        transition: .5s;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+
+
+    }
+
+    .rating label:hover:after,
+    .rating label:hover~label:after,
+    .rating input:checked~label:after {
+        opacity: 1;
+    }
+</style>
+<div class="user_card">
+    <div class="d-flex justify-content-center">
+
+        <div class="d-flex justify-content-center form_container"  style="margin-bottom: 5rem;">
+            <form method="POST" action="">
+                <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação</h3>
+                {% csrf_token %}
+
+                <label for="basic-url">Titulo da Avaliação</label>
+                <div class="input-group mb-2">
+                    {{ form.titleAvaliation }}
+                </div>
+
+                <label for="basic-url">Instagram avaliado</label>
+                {{ form.store_instagram.errors }}
+                <div class="input-group mb-3">
+                    {{ form.store_instagram }}
+                </div>
+
+                <label for="basic-url">Categoria</label>
+                <div class="dropdown show mb-2">
+                    {{ form.category }}
+                </div>
+                <label for="basic-url">Descrição</label>
+                <div class="campo input-group mb-2">
+                    <script type="text/javascript" src="{% static " ckeditor/ckeditor-init.js" %}"></script>
+                    <script type="text/javascript" src="{% static " ckeditor/ckeditor/ckeditor.js" %}"></script>
+                    {{ form.description }}
+                </div>
+                <div class="form-group">
+                    <label for="basic-url">Sua nota de avaliação: </label>
+                    <br />
+                    <div class="input-rating" style="height: 45px;">
+                        
+                        <div class="rating">
+                            <input type="radio" id="star5" name="ratingAvaliation" value="5" /><label for="star5"></label>
+                            <input type="radio" id="star4" name="ratingAvaliation" value="4" /><label for="star4"></label>
+                            <input type="radio" id="star3" name="ratingAvaliation" value="3" /><label for="star3"></label>
+                            <input type="radio" id="star2" name="ratingAvaliation" value="2" /><label for="star2"></label>
+                            <input type="radio" id="star1" name="ratingAvaliation" value="1" /><label for="star1"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center avaliation_container mb-2">
+                    <input class="btn btn-dark btn-md" type="submit" value="Confirmar">
+                    <a class="btn btn-dark btn-md" role="button" href="{% url 'home' %}">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script>
+
+        var form_fields = document.getElementsByTagName('input')
+        form_fields[2].placeholder = '@lojinha';
+
+
+        for (var field in form_fields) {
+            form_fields[field].className += ' form-control'
+        }
+    </script>
+
+{% endblock %}

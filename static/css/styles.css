@@ -1,0 +1,66 @@
+.navbar {
+    background-color: #1A1F26;
+  }
+  .nav-color { 
+      color:white
+  }
+  .container-fluid{
+      padding: 0;
+  }
+  .logotipo{
+      width: 8rem;
+      height: auto;
+  }
+  .btn-outline-success{
+      color: white;
+      border: 1px solid white;
+  }
+  .btn-outline-success:hover{
+      border-color: white;
+      background-color: #9505bf;
+  }
+  
+  .navbar-nav{
+      font-family: lato;
+      font-size: 18px;
+  }
+  
+  
+  
+  html{
+      height: 100%;
+      width: 100%;
+    }
+    
+  body{
+      height: 100%;
+      width: 100%;
+    }
+    .ftr {
+        left: 0px;
+        right: 0px;
+        margin-top: 50px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        align-items: center;
+        font-size: 18px;
+        text-align: center;
+        font-family: lato;
+        color: white;
+        background-color: #1A1F26;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .conteudo {
+        width: 100%;
+        font-family: lato;
+        font-size: 18px;
+        margin-top: 6rem;
+        margin-bottom: 8rem;
+    }
+
+    .campo {
+        width: 24rem;
+    }
