@@ -1,32 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
-{% block title %} Create Category! {% endblock %}
-
-{% block content %}
-
-{% if category_avaliations %}
-
-  <h1> {{cats}} </h1>
-
-  <ul>
-  {% for avaliation in category_avaliations %}
-
-    <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
-      {{avaliation.user_instagram}}<br /></li>
-    <br /><br />
-    <hr>
-    <br />
-  
-
-  {% endfor %}
-
-{% else %}
-      <h2> Sorry, dont have nothing in this category yet :( </h2>
-  
-  </ul>
-{% endif %}
-
-=======
 {% load static %}
 {% block title %} {{cats}} {% endblock %}
 {% load crispy_forms_tags %}
@@ -168,5 +140,4 @@
 </ul>
 {% endif %}
 -->
->>>>>>> passwordChange
 {% endblock %}

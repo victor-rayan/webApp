@@ -1,15 +1,5 @@
-<<<<<<< HEAD
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
-from .forms import CreateForm
-from django.core.paginator import Paginator
-from django.views.generic import ListView, DetailView, CreateView
-from .models import Avaliation, Account
-=======
 from django.contrib import messages
 from django.db.models import Avg, Max, Min, Sum
->>>>>>> passwordChange
 from django.urls import reverse_lazy, reverse
 from .models import Avaliation, Account
 from django.views.generic import ListView, DetailView, CreateView
@@ -21,8 +11,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 
 
-<<<<<<< HEAD
-=======
 # class HomeView(ListView):
 #   model = Avaliation
 #  template_name = 'home.html'
@@ -32,15 +20,10 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, redirec
 # context["total_likes"] = total_likes
 # return context
 
->>>>>>> passwordChange
 class HomeView(ListView):
     model = Avaliation
     template_name = 'home.html'
 
-<<<<<<< HEAD
-=======
-
->>>>>>> passwordChange
 class AvaliationDetailView(DetailView):
 
     model = Avaliation
@@ -66,11 +49,7 @@ def createForm(request):
     try:
         author = Account.object.get(pk=request.user.id)
     except:
-<<<<<<< HEAD
-        return redirect('/')
-=======
         return redirect('/login')
->>>>>>> passwordChange
     author.save()
 
     if request.method == 'POST':
@@ -126,11 +105,6 @@ def likeView(request, pk):
     return HttpResponseRedirect(reverse('avaliationDetail', args=[str(pk)]))
 
 
-<<<<<<< HEAD
-def CategoryView(request, cats):
-    category_avaliations = Avaliation.objects.filter(category=cats)
-    return render(request, '../templates/categories/categories.html', {'cats':cats.title(), 'category_avaliations':category_avaliations})
-=======
 def recommendationAvaliation(request):
     average = Avaliation.objects.all().aggregate(Avg('ratingAvaliation'))
 
@@ -160,15 +134,8 @@ def CategoryView(request, cats):
     category_avaliations = Avaliation.objects.filter(category=cats)
     return render(request, '../templates/categories/categories.html', {'cats': cats.title(), 'category_avaliations': category_avaliations})
 
->>>>>>> passwordChange
 
 def userAvaliations(request):
     avaliations = Avaliation.objects.all()
     avaliations = avaliations.filter(author_id=request.user.id)
-    for avaliation in avaliations:
-        print(avaliation.titleAvaliation)
-<<<<<<< HEAD
     return render(request, 'profile/profile.html', {"avaliations": avaliations})
-=======
-    return render(request, 'profile/profile.html', {"avaliations": avaliations})
->>>>>>> passwordChange

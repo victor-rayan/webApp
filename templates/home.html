@@ -73,24 +73,4 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-<ul>
-  {% for avaliation in object_list%}
-  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
-    {% if user.is_authenticated %}
-    {{avaliation.user_instagram}} 
-      {% if user.id == avaliation.author.id %}
-        <a href="{% url 'update-form' avaliation.pk %}"> Edit </a>  
-        <a href="{% url 'delete-form' avaliation.pk %}"> delete </a>
-      {% endif %}
-    {% endif %}
-    <br /></li>
-  <br /><br />
-  <hr>
-  <br />
-  {% endfor %}
-</ul>
-
-=======
->>>>>>> passwordChange
 {% endblock %}

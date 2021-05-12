@@ -4,37 +4,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<<<<<<< HEAD
-current user: {{user.id}} 
-post auther:{{avaliation.author.id}}
-
-<h1> {{avaliation.store_instagram}} - </h1>
-
-  {{avaliation.description|safe}}
-=======
 <style>
   .star.fa {
     color: #fbbe2e;
->>>>>>> passwordChange
 
   }
 
-<<<<<<< HEAD
-{% if user.is_authenticated %}
-    {% if user.id == avaliation.author.id %}
-      <a href="{% url 'update-form' avaliation.pk %}"> Edit </a>  
-      <a href="{% url 'delete-form' avaliation.pk %}"> delete </a>
-    {% endif %}
-  <br>
-  {% if liked %}
-    <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
-    class = "btn btn-danger btn-sm">Unlike</button>
-  {% else %}
-    <button type="submit", name="avaliation_id", value="{{ avaliation.id }}",
-    class = "btn btn-primary btn-sm">like</button>
-=======
   .fa {
->>>>>>> passwordChange
 
     font-size: 30px;
 

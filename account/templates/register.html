@@ -112,18 +112,18 @@
           {% for field in registration_form %}
           <p>
             {% for error in field.errors %}
-          <p style="color: green"> {{ error }}</p>
+          <p style="color: red"> {{ error }}</p>
           {% endfor %}
           </p>
           {% endfor %}
           {% if registration_form.non_field_erros %}
-          <div style="color: green">
+          <div style="color: red">
             <p>{{ registration_form.non_field_erros}}</p>
           </div>
           {% endif %}
           <div class="container">
             <button class="btns btn btn-md btn-dark" type="submit">Registrar</button>
-            <button class="btns btn btn-md btn-dark" type="reset"><a href="{% url 'home' %}" style="text-decoration: none;">Voltar</a></button>
+            <button class="btns btn btn-md btn-dark" type="reset"><a href="{% url 'home' %}" style="text-decoration: none; color:white;">Voltar</a></button>
           </div>
         </div>
       </form>

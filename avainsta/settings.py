@@ -84,15 +84,9 @@ WSGI_APPLICATION = 'avainsta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-<<<<<<< HEAD
         'NAME': 'avainsta',
         'USER': 'avainstauser',
         'PASSWORD': 'avainsta',
-=======
-        'NAME': 'avainsta_server',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
->>>>>>> passwordChange
         'HOST': 'localhost',
         'PORT': '5432',
     }

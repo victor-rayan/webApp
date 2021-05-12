@@ -53,11 +53,7 @@ class CreateForm(forms.ModelForm):
     class Meta:
         model = Avaliation
         fields = ['store_instagram', 'category', 'description',
-<<<<<<< HEAD
-                  'titleAvaliation', 'deliveryTime', 'ratingAvaliation']
-=======
                   'titleAvaliation', 'ratingAvaliation']
->>>>>>> passwordChange
         widgets = {
             'store_instagram': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),

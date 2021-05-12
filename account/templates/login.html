@@ -18,23 +18,6 @@
         <div class="form-group">
           <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
         </div>
-<<<<<<< HEAD
-        <div class = "form-group">
-          <input type="password" name="password" autocomplete="on" id="inputPassword" class="form-control" placeholder="Senha" required>
-        </div>
-
-        {% for field in login_form %}
-				<p>
-				{% for error in field.errors %}
-				<p style="color: red">{{ error }}</p>
-				{% endfor %}
-				</p>
-				{% endfor %}
-				{% if login_form.non_field_errors %}
-				<div style="color: red">
-				<p>{{login_form.non_field_errors}}</p>
-				</div>
-=======
         <div class="form-group">
           <input type="password" name="password" autocomplete="on" id="inputPassword" class="form-control"
             placeholder="Senha" required>
@@ -51,7 +34,6 @@
         <div style="color: red">
           <p>{{login_form.non_field_errors}}</p>
         </div>
->>>>>>> passwordChange
 
 				{% endif %}
 

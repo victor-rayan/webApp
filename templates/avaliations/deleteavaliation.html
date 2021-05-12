@@ -4,17 +4,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<<<<<<< HEAD
-    <p>Quer mesmo deletar a avaliação feita ao usuário {{item}}?</p>
-
-    <form action="{% url 'delete-form' item.id %}" method="POST">
-        {% csrf_token %}
-        <div>
-            <button type="submit">Excluir</button>
-            <a href="{% url 'home' %}">Não, esquece!</a>
-        </div>
-    </form>
-=======
 <div class="card col-8 text-center border border-0">
  <div class="form-group">
     <h3>Quer mesmo deletar a avaliação feita a loja "{{item}}"?</h3>
@@ -28,6 +17,5 @@
     </form>
  </div> 
 </div>
->>>>>>> passwordChange
 
 {% endblock %}

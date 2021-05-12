@@ -1,27 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-<<<<<<< HEAD
-{% block title %} Avaliations {% endblock %}
-{% load crispy_forms_tags %}
-{% block content %}
-
-{% for avaliation in avaliations %}
-  <li><a href="{% url 'avaliationDetail' avaliation.pk %}">{{avaliation.titleAvaliation}}</a> -
-    {% if user.is_authenticated %}
-    {{avaliation.user_instagram}} 
-      {% if user.id == avaliation.author.id %}
-        <a href="{% url 'update-form' avaliation.pk %}"> Edit </a>  
-        <a href="{% url 'delete-form' avaliation.pk %}"> delete </a>
-      {% endif %}
-    {% endif %}
-    <br /></li>
-  <br /><br />
-  <hr>
-  <br />
-  {% endfor %}
-</ul>
-
-=======
 {% block title %} Meu perfil {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -112,6 +90,5 @@
     </div>
   </div>
 </div>
->>>>>>> passwordChange
 
 {% endblock %}
