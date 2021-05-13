@@ -62,8 +62,3 @@ urlpatterns = [
     path('like/<int:pk>', likeView, name='like_avaliation'),
     path('search/', searchAvaliations, name='search_avaliation')
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                          document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)

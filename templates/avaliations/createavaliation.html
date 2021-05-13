@@ -71,7 +71,7 @@
 <div class="user_card">
     <div class="d-flex justify-content-center">
 
-        <div class="d-flex justify-content-center form_container"  style="margin-bottom: 5rem;">
+        <div class="d-flex justify-content-center form_container" style="margin-bottom: 5rem;">
             <form method="POST" action="">
                 <h3 class="row justify-content-center mb-4" id="form-title">Cadastro de avaliação</h3>
                 {% csrf_token %}
@@ -101,13 +101,18 @@
                     <label for="basic-url">Sua nota de avaliação: </label>
                     <br />
                     <div class="input-rating" style="height: 45px;">
-                        
+
                         <div class="rating">
-                            <input type="radio" id="star5" name="ratingAvaliation" value="5" /><label for="star5"></label>
-                            <input type="radio" id="star4" name="ratingAvaliation" value="4" /><label for="star4"></label>
-                            <input type="radio" id="star3" name="ratingAvaliation" value="3" /><label for="star3"></label>
-                            <input type="radio" id="star2" name="ratingAvaliation" value="2" /><label for="star2"></label>
-                            <input type="radio" id="star1" name="ratingAvaliation" value="1" /><label for="star1"></label>
+                            <input type="radio" id="star5" name="ratingAvaliation" value="5" /><label
+                                for="star5"></label>
+                            <input type="radio" id="star4" name="ratingAvaliation" value="4" /><label
+                                for="star4"></label>
+                            <input type="radio" id="star3" name="ratingAvaliation" value="3" /><label
+                                for="star3"></label>
+                            <input type="radio" id="star2" name="ratingAvaliation" value="2" /><label
+                                for="star2"></label>
+                            <input type="radio" id="star1" name="ratingAvaliation" value="1" /><label
+                                for="star1"></label>
                         </div>
                     </div>
                 </div>
@@ -121,15 +126,15 @@
     </div>
 </div>
 
-    <script>
+<script>
 
-        var form_fields = document.getElementsByTagName('input')
-        form_fields[2].placeholder = '@lojinha';
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[2].placeholder = '@lojinha';
 
 
-        for (var field in form_fields) {
-            form_fields[field].className += ' form-control'
-        }
-    </script>
+    for (var field in form_fields) {
+        form_fields[field].className += ' form-control'
+    }
+</script>
 
 {% endblock %}
